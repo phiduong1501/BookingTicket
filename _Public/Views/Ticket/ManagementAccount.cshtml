@@ -1,0 +1,142 @@
+﻿@Html.Partial("_Header")
+@using BookingTicket.Models
+@{
+    var objUser = SysUserModels.Current.CurrentUser();
+}
+<div id="page-wrapper" ng-controller="AccountController" ng-init="Init()">
+    @if (objUser.IsAllowManager)
+    {
+        <div class="col-xs-12 left-section">
+            <div class="alert alert-warning">
+                <div class="col-xs-12 item-seat text-right">
+                    <kendo-button class="k-primary k-button k-button-icontext" ng-click="openWndAccount()">Thêm</kendo-button>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr class="table-header">
+                            <th>Username</th>
+                            <th>Họ tên</th>
+                            <th>Văn phòng</th>
+                            <th>Quản lý</th>
+                            <th>Đặt vé</th>
+                            <th>Tạo chuyến TC</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="user in lstUser">
+                            <td>{{user.UserName}}</td>
+                            <td>{{user.FullName}}</td>
+                            <td>{{user.StationName}}</td>
+                            <td>
+                                <input type="checkbox" id="{{user.UserId}}" class="k-checkbox" ng-checked="user.IsAllowManager" disabled />
+                                <label class="k-checkbox-label" for="{{user.UserId}}"></label>
+                            </td>
+                            <td>
+                                <input type="checkbox" id="{{user.UserId}}" class="k-checkbox" ng-checked="user.IsAllowBooking" disabled />
+                                <label class="k-checkbox-label" for="{{user.UserId}}"></label>
+                            </td>
+                            <td>
+                                <input type="checkbox" id="{{user.UserId}}" class="k-checkbox" ng-checked="user.IsAllowRouter" disabled />
+                                <label class="k-checkbox-label" for="{{user.UserId}}"></label>
+                            </td>
+                            <td>
+                                <kendo-button class="k-success k-button k-button-icontext" ng-click="openWndAccount(user)">Sửa</kendo-button>
+                                <kendo-button class="k-danger k-button k-button-icontext" ng-click="DeleteUser(user)">Xóa</kendo-button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div kendo-window="controls.wndAccount" k-title="'Cập nhật'" k-modal="true" k-width="750" k-heigh="500" k-visible="false">
+                <div class="col-xs-12">
+                    <div class="col-xs-12 item-seat">
+                        <div class="col-xs-5">
+                            <label class="item-label">Username:</label>
+                        </div>
+                        <div class="col-xs-7">
+                            <input class="k-textbox" type="text" ng-model="model.UserName" placeholder="Tên tài khoản" />
+                        </div>
+                    </div>
+                    <div class="col-xs-12 item-seat">
+                        <div class="col-xs-5">
+                            <label class="item-label">Password:</label>
+                        </div>
+                        <div class="col-xs-7">
+                            <input class="k-textbox" type="password" ng-model="Password" placeholder="Mật khẩu" />
+                        </div>
+                    </div>
+                    <div class="col-xs-12 item-seat">
+                        <div class="col-xs-5">
+                            <label class="item-label">Họ tên:</label>
+                        </div>
+                        <div class="col-xs-7">
+                            <input class="k-textbox" type="text" ng-model="model.FullName" placeholder="Họ tên" />
+                        </div>
+                    </div>
+                    <div class="col-xs-12 item-seat">
+                        <div class="col-xs-5">
+                            <label class="item-label">Văn phòng</label>
+                        </div>
+                        <div class="col-xs-7">
+                            <input kendo-drop-down-list="controls.ddlStation" k-data-source="stations"
+                                   k-data-text-field="'StationName'"
+                                   k-data-value-field="'StationID'" ng-model="model.StationID" />
+                        </div>
+                    </div>
+                    <div class="col-xs-12 item-seat">
+                        <div class="col-xs-5">
+                            <label class="item-label">Quyền quản lý</label>
+                        </div>
+                        <div class="col-xs-7" style="margin-top: 7px; margin-bottom:10px;">
+                            <input type="checkbox" id="manager" class="k-checkbox" ng-model="model.IsAllowManager" />
+                            <label class="k-checkbox-label" for="manager"></label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 item-seat">
+                        <div class="col-xs-5">
+                            <label class="item-label">Đặt vé</label>
+                        </div>
+                        <div class="col-xs-7" style="margin-top: 7px; margin-bottom:10px;">
+                            <input type="checkbox" id="booking" class="k-checkbox" ng-model="model.IsAllowBooking" />
+                            <label class="k-checkbox-label" for="booking"></label>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 item-seat">
+                        <div class="col-xs-5">
+                            <label class="item-label">Quyền tạo chuyến TC</label>
+                        </div>
+                        <div class="col-xs-7" style="margin-top: 7px; margin-bottom:10px;">
+                            <input type="checkbox" id="router" class="k-checkbox" ng-model="model.IsAllowRouter" />
+                            <label class="k-checkbox-label" for="router"></label>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="col-xs-12 text-right">
+                        <kendo-button class="k-primary k-button k-button-icontext" ng-click="Submit()">Cập nhật</kendo-button>
+                        <kendo-button class="k-button k-button-icontext" ng-click="controls.wndAccount.close()">Đóng</kendo-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="col-xs-12 left-section">
+            <strong>Bạn không có quyền truy cập</strong>
+        </div>
+    }
+</div>
+
+<style>
+    .nav.navbar-nav.side-nav {
+        display: none;
+    }
+
+    #wrapper {
+        padding-left: 0;
+    }
+</style>

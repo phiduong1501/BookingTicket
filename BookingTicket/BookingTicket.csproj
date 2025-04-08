@@ -1,0 +1,648 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3232B483-30FC-41B5-8E93-5E47A3F03CBF}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BookingTicket</RootNamespace>
+    <AssemblyName>BookingTicket</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>2.0</TypeScriptToolsVersion>
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptModuleKind>None</TypeScriptModuleKind>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalDecisions.CrystalReports.Engine.1.0.0\lib\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalDecisions.ReportSource.1.0.0\lib\CrystalDecisions.ReportSource.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <HintPath>..\packages\CrystalDecisions.Shared.1.0.0\lib\CrystalDecisions.Shared.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="TGDD.Library.Core">
+      <HintPath>..\DLL\TGDD.Library.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.2.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.2.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.2.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.2.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.2.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.2.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LeftSectionController.cs" />
+    <Compile Include="Controllers\TicketController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BookingViewModel.cs" />
+    <Compile Include="Models\SystemUserModels.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportData.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Report\rptTicket.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptTicket.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Utils\ObjectExtension.cs" />
+    <Compile Include="Utils\Utils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\image\blue.png" />
+    <Content Include="Content\image\default-avatar.png" />
+    <Content Include="Content\image\loading.gif" />
+    <Content Include="Content\image\logo.png" />
+    <Content Include="Content\loading.css" />
+    <Content Include="Content\print.css" />
+    <Content Include="Content\sb-admin.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\angular\angular-animate.js" />
+    <Content Include="Scripts\angular\angular-animate.min.js" />
+    <Content Include="Scripts\angular\angular-aria.js" />
+    <Content Include="Scripts\angular\angular-aria.min.js" />
+    <Content Include="Scripts\angular\angular-cookies.js" />
+    <Content Include="Scripts\angular\angular-cookies.min.js" />
+    <Content Include="Scripts\angular\angular-csp.css" />
+    <Content Include="Scripts\angular\angular-loader.js" />
+    <Content Include="Scripts\angular\angular-loader.min.js" />
+    <Content Include="Scripts\angular\angular-message-format.js" />
+    <Content Include="Scripts\angular\angular-message-format.min.js" />
+    <Content Include="Scripts\angular\angular-messages.js" />
+    <Content Include="Scripts\angular\angular-messages.min.js" />
+    <Content Include="Scripts\angular\angular-mocks.js" />
+    <Content Include="Scripts\angular\angular-parse-ext.js" />
+    <Content Include="Scripts\angular\angular-parse-ext.min.js" />
+    <Content Include="Scripts\angular\angular-resource.js" />
+    <Content Include="Scripts\angular\angular-resource.min.js" />
+    <Content Include="Scripts\angular\angular-route.js" />
+    <Content Include="Scripts\angular\angular-route.min.js" />
+    <Content Include="Scripts\angular\angular-sanitize.js" />
+    <Content Include="Scripts\angular\angular-sanitize.min.js" />
+    <Content Include="Scripts\angular\angular-scenario.js" />
+    <Content Include="Scripts\angular\angular-touch.js" />
+    <Content Include="Scripts\angular\angular-touch.min.js" />
+    <Content Include="Scripts\angular\angular.js" />
+    <Content Include="Scripts\angular\angular.min.js" />
+    <Content Include="Scripts\angular\directives\gplace-autocomplete.js" />
+    <Content Include="Scripts\angular\directives\ng-dropzone.js" />
+    <Content Include="Scripts\angular\directives\ng-file-upload-shim.js" />
+    <Content Include="Scripts\angular\directives\ng-file-upload.js" />
+    <Content Include="Scripts\angular\i18n\angular-locale_en-au.js" />
+    <Content Include="Scripts\angular\i18n\angular-locale_en-us.js" />
+    <Content Include="Scripts\angular\i18n\angular-locale_vi-vn.js" />
+    <Content Include="Scripts\angular\version.txt" />
+    <Content Include="Scripts\app\controller\AccountController.js" />
+    <Content Include="Scripts\app\controller\appController.js" />
+    <Content Include="Scripts\app\controller\actionTicketController.js" />
+    <Content Include="Scripts\app\controller\managementRouteController.js" />
+    <Content Include="Scripts\app\controller\managementTimeController.js" />
+    <Content Include="Scripts\app\controller\managementStationController.js" />
+    <Content Include="Scripts\app\controller\managementCompanyController.js" />
+    <Content Include="Scripts\app\controller\managementCarController.js" />
+    <Content Include="Scripts\app\controller\managementPickupController.js" />
+    <Content Include="Scripts\app\controller\printerController.js" />
+    <Content Include="Scripts\app\controller\transitController.js" />
+    <Content Include="Scripts\app\controller\payBackController.js" />
+    <Content Include="Scripts\app\controller\bookingController.js" />
+    <Content Include="Scripts\app\controller\leftSectionController.js" />
+    <Content Include="Scripts\app\factory\managementRouteFactory.js" />
+    <Content Include="Scripts\app\factory\managementTimeFactory.js" />
+    <Content Include="Scripts\app\factory\managementStationFactory.js" />
+    <Content Include="Scripts\app\factory\managementCompanyFactory.js" />
+    <Content Include="Scripts\app\factory\managementCarFactory.js" />
+    <Content Include="Scripts\app\factory\AccountFactory.js" />
+    <Content Include="Scripts\app\factory\CommonFactory.js" />
+    <Content Include="Scripts\app\factory\bookingFactory.js" />
+    <Content Include="Scripts\app\factory\leftSectionFactory.js" />
+    <Content Include="Scripts\app\factory\ManagementPickupFactory.js" />
+    <Content Include="Scripts\app\Filters.js" />
+    <Content Include="Scripts\app\mainapp.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\angular\angular-animate.js.map" />
+    <Content Include="Scripts\angular\angular-animate.min.js.map" />
+    <Content Include="Scripts\angular\angular-aria.js.map" />
+    <Content Include="Scripts\angular\angular-aria.min.js.map" />
+    <Content Include="Scripts\angular\angular-cookies.js.map" />
+    <Content Include="Scripts\angular\angular-cookies.min.js.map" />
+    <Content Include="Scripts\angular\angular-loader.js.map" />
+    <Content Include="Scripts\angular\angular-loader.min.js.map" />
+    <Content Include="Scripts\angular\angular-message-format.js.map" />
+    <Content Include="Scripts\angular\angular-message-format.min.js.map" />
+    <Content Include="Scripts\angular\angular-messages.js.map" />
+    <Content Include="Scripts\angular\angular-messages.min.js.map" />
+    <Content Include="Scripts\angular\angular-mocks.js.map" />
+    <Content Include="Scripts\angular\angular-parse-ext.js.map" />
+    <Content Include="Scripts\angular\angular-parse-ext.min.js.map" />
+    <Content Include="Scripts\angular\angular-resource.js.map" />
+    <Content Include="Scripts\angular\angular-resource.min.js.map" />
+    <Content Include="Scripts\angular\angular-route.js.map" />
+    <Content Include="Scripts\angular\angular-route.min.js.map" />
+    <Content Include="Scripts\angular\angular-sanitize.js.map" />
+    <Content Include="Scripts\angular\angular-sanitize.min.js.map" />
+    <Content Include="Scripts\angular\angular-scenario.js.map" />
+    <Content Include="Scripts\angular\angular-touch.js.map" />
+    <Content Include="Scripts\angular\angular-touch.min.js.map" />
+    <Content Include="Scripts\angular\angular.js.map" />
+    <Content Include="Scripts\angular\angular.min.js.map" />
+    <Content Include="Scripts\angular\directives\gplace-autocomplete.js.map" />
+    <Content Include="Scripts\angular\directives\ng-dropzone.js.map" />
+    <Content Include="Scripts\angular\directives\ng-file-upload-shim.js.map" />
+    <Content Include="Scripts\angular\directives\ng-file-upload.js.map" />
+    <Content Include="Scripts\angular\errors.json" />
+    <Content Include="Scripts\angular\i18n\angular-locale_en-au.js.map" />
+    <Content Include="Scripts\angular\i18n\angular-locale_en-us.js.map" />
+    <Content Include="Scripts\angular\i18n\angular-locale_vi-vn.js.map" />
+    <Content Include="Scripts\angular\version.json" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+    <None Include="Properties\PublishProfiles\binh.bookingTicket.pubxml" />
+    <Content Include="ReportData.xsc">
+      <DependentUpon>ReportData.xsd</DependentUpon>
+    </Content>
+    <None Include="Properties\PublishProfiles\NhaXeOnline.pubxml" />
+    <None Include="ReportData.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ReportData.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="ReportData.xss">
+      <DependentUpon>ReportData.xsd</DependentUpon>
+    </Content>
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\excellentexport.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\kendo\blank.js" />
+    <Content Include="Scripts\kendo\css\Default\editor.png" />
+    <Content Include="Scripts\kendo\css\Default\imagebrowser.png" />
+    <Content Include="Scripts\kendo\css\Default\indeterminate.gif" />
+    <Content Include="Scripts\kendo\css\Default\loading-image.gif" />
+    <Content Include="Scripts\kendo\css\Default\loading.gif" />
+    <Content Include="Scripts\kendo\css\Default\loading_2x.gif" />
+    <Content Include="Scripts\kendo\css\Default\markers.png" />
+    <Content Include="Scripts\kendo\css\Default\markers_2x.png" />
+    <Content Include="Scripts\kendo\css\Default\slider-h.gif" />
+    <Content Include="Scripts\kendo\css\Default\slider-v.gif" />
+    <Content Include="Scripts\kendo\css\Default\sprite.png" />
+    <Content Include="Scripts\kendo\css\Default\sprite_2x.png" />
+    <Content Include="Scripts\kendo\css\Default\sprite_kpi.png" />
+    <Content Include="Scripts\kendo\css\Default\sprite_kpi_2x.png" />
+    <Content Include="Scripts\kendo\css\kendo.common.min.css" />
+    <Content Include="Scripts\kendo\css\kendo.default.min.css" />
+    <Content Include="Scripts\kendo\css\kendo.material.min.css" />
+    <Content Include="Scripts\kendo\css\Material\editor.png" />
+    <Content Include="Scripts\kendo\css\Material\imagebrowser.png" />
+    <Content Include="Scripts\kendo\css\Material\indeterminate.gif" />
+    <Content Include="Scripts\kendo\css\Material\loading-image.gif" />
+    <Content Include="Scripts\kendo\css\Material\loading.gif" />
+    <Content Include="Scripts\kendo\css\Material\loading_2x.gif" />
+    <Content Include="Scripts\kendo\css\Material\markers.png" />
+    <Content Include="Scripts\kendo\css\Material\markers_2x.png" />
+    <Content Include="Scripts\kendo\css\Material\slider-h.gif" />
+    <Content Include="Scripts\kendo\css\Material\slider-v.gif" />
+    <Content Include="Scripts\kendo\css\Material\sprite.png" />
+    <Content Include="Scripts\kendo\css\Material\sprite_2x.png" />
+    <Content Include="Scripts\kendo\css\Material\sprite_kpi.png" />
+    <Content Include="Scripts\kendo\css\Material\sprite_kpi_2x.png" />
+    <Content Include="Scripts\kendo\js\cultures\kendo.culture.en-US.min.js" />
+    <Content Include="Scripts\kendo\js\cultures\kendo.culture.en.min.js" />
+    <Content Include="Scripts\kendo\js\cultures\kendo.culture.vi-VN.min.js" />
+    <Content Include="Scripts\kendo\js\cultures\kendo.culture.vi.min.js" />
+    <Content Include="Scripts\kendo\js\jszip.min.js" />
+    <Content Include="Scripts\kendo\js\kendo.all.min.js" />
+    <Content Include="Scripts\kendo\js\kendo.angular.min.js" />
+    <Content Include="Scripts\kendo\js\kendo.angular2.min.js" />
+    <Content Include="Scripts\kendo\js\kendo.mobile.min.js" />
+    <Content Include="Scripts\kendo\js\kendo.subset.2015.3.930.min.js" />
+    <Content Include="Scripts\kendo\js\messages\kendo.messages.en-US.min.js" />
+    <Content Include="Scripts\kendo\js\telerikReportViewer-10.1.16.615.min.js" />
+    <Content Include="Scripts\kendo\lib\jquery\AUTHORS.txt" />
+    <Content Include="Scripts\kendo\lib\jquery\dist\jquery.js" />
+    <Content Include="Scripts\kendo\lib\jquery\dist\jquery.min.js" />
+    <Content Include="Scripts\kendo\lib\jquery\external\sizzle\dist\sizzle.js" />
+    <Content Include="Scripts\kendo\lib\jquery\external\sizzle\dist\sizzle.min.js" />
+    <Content Include="Scripts\kendo\lib\jquery\external\sizzle\LICENSE.txt" />
+    <Content Include="Scripts\kendo\lib\jquery\LICENSE.txt" />
+    <Content Include="Scripts\kendo\lib\jquery\src\ajax.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\ajax\jsonp.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\ajax\load.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\ajax\parseJSON.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\ajax\parseXML.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\ajax\script.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\ajax\var\location.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\ajax\var\nonce.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\ajax\var\rquery.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\ajax\xhr.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\attributes.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\attributes\attr.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\attributes\classes.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\attributes\prop.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\attributes\support.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\attributes\val.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\callbacks.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\core.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\core\access.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\core\init.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\core\parseHTML.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\core\ready.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\core\var\rsingleTag.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\css.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\css\addGetHookIf.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\css\adjustCSS.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\css\curCSS.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\css\defaultDisplay.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\css\hiddenVisibleSelectors.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\css\showHide.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\css\support.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\css\var\cssExpand.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\css\var\getStyles.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\css\var\isHidden.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\css\var\rmargin.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\css\var\rnumnonpx.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\css\var\swap.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\data.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\data\Data.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\data\var\acceptData.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\data\var\dataPriv.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\data\var\dataUser.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\deferred.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\deprecated.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\dimensions.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\effects.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\effects\animatedSelector.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\effects\Tween.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\event.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\event\ajax.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\event\alias.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\event\focusin.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\event\support.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\event\trigger.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\exports\amd.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\exports\global.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\intro.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\jquery.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\manipulation.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\manipulation\buildFragment.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\manipulation\getAll.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\manipulation\setGlobalEval.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\manipulation\support.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\manipulation\var\rcheckableType.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\manipulation\var\rscriptType.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\manipulation\var\rtagName.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\manipulation\wrapMap.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\manipulation\_evalUrl.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\offset.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\outro.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\queue.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\queue\delay.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\selector-native.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\selector-sizzle.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\selector.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\serialize.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\traversing.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\traversing\findFilter.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\traversing\var\dir.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\traversing\var\rneedsContext.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\traversing\var\siblings.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\var\arr.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\var\class2type.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\var\concat.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\var\document.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\var\documentElement.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\var\hasOwn.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\var\indexOf.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\var\pnum.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\var\push.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\var\rcssNum.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\var\rnotwhite.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\var\slice.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\var\support.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\var\toString.js" />
+    <Content Include="Scripts\kendo\lib\jquery\src\wrap.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\toastr\toastr.css">
+      <DependentUpon>toastr.less</DependentUpon>
+    </Content>
+    <Content Include="Scripts\toastr\toastr.js" />
+    <Content Include="Scripts\toastr\toastr.min.css">
+      <DependentUpon>toastr.css</DependentUpon>
+    </Content>
+    <Content Include="Scripts\toastr\toastr.min.js" />
+    <Content Include="Views\Shared\_LeftSection.cshtml" />
+    <Content Include="Views\Shared\_ActionTicket.cshtml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\kendo\.bower.json" />
+    <Content Include="Scripts\kendo\bower.json" />
+    <Content Include="Scripts\kendo\lib\jquery\.bower.json" />
+    <Content Include="Scripts\kendo\lib\jquery\bower.json" />
+    <Content Include="Scripts\kendo\lib\jquery\dist\jquery.min.map" />
+    <Content Include="Scripts\kendo\lib\jquery\external\sizzle\dist\sizzle.min.map" />
+    <Content Include="Scripts\kendo\lib\jquery\README.md" />
+    <Content Include="Scripts\kendo\lib\jquery\src\.jshintrc" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Ticket\TicketListOfRoute.cshtml" />
+    <Content Include="Scripts\toastr\toastr.js.map" />
+    <Content Include="Scripts\toastr\toastr.less" />
+    <Content Include="Scripts\toastr\toastr.min.js.map" />
+    <Content Include="Views\Ticket\Booking.cshtml" />
+    <Content Include="Views\Ticket\PayBack.cshtml" />
+    <Content Include="Views\Ticket\PrintTicket.cshtml" />
+    <Content Include="Views\Ticket\Transit.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Home\Home.cshtml" />
+    <Content Include="Views\Ticket\ManagementCar.cshtml" />
+    <Content Include="Views\Ticket\PrintTicketList.cshtml" />
+    <Content Include="Views\Ticket\PrintPayback.cshtml" />
+    <Content Include="Views\Ticket\ManagementPickup.cshtml" />
+    <Content Include="Views\Ticket\PrintTransit.cshtml" />
+    <Content Include="Views\Ticket\ManagementAccount.cshtml" />
+    <Content Include="Views\Shared\_CarInfo.cshtml" />
+    <Content Include="Views\Ticket\PrintSeatDiagram.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Company\List.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Ticket\ManagementStation.cshtml" />
+    <Content Include="Views\Ticket\ManagementTime.cshtml" />
+    <Content Include="Views\Ticket\ManagementRoute.cshtml" />
+    <Content Include="Views\Ticket\PrinterTicket.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Views\LeftSection\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BookingTicket.BussinessLogic\BookingTicket.BussinessLogic.csproj">
+      <Project>{df246769-4eca-447b-a548-db580d23951a}</Project>
+      <Name>BookingTicket.BussinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BookingTicket.BussinessObject\BookingTicket.BussinessObject.csproj">
+      <Project>{8cebe867-033d-4174-a710-d8fc3c8cce56}</Project>
+      <Name>BookingTicket.BussinessObject</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BookingTicket.DataObject\BookingTicket.DataObject.csproj">
+      <Project>{5a02bdf9-350d-4a75-90a3-2bd661539c8b}</Project>
+      <Name>BookingTicket.DataObject</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Report\rptTicket.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptTicket.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\app\config.js" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1495</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:55719/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

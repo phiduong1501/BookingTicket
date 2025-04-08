@@ -1,0 +1,171 @@
+﻿
+<div ng-controller="ActionTicketController" style="margin-bottom:5px">
+    <kendo-button ng-click="PrintSeatDiagram()" class="k-primary" icon="'k-icon k-i-print'">In phơi</kendo-button>
+    <kendo-button ng-click="RefreshPage()" class="k-warning" icon="'k-icon k-i-refresh'">Làm mới</kendo-button>
+    <kendo-button ng-click="PayBackRedirect();" class="k-success" icon="'k-icon k-i-share'">Đón trả</kendo-button>
+    <kendo-button ng-click="TransitRedirect()" class="k-primary" icon="'k-icon k-i-rewind'">Trung chuyển</kendo-button>
+    <kendo-button ng-click="openWndCarDateGoUpdate()" class="k-warning" icon="'k-icon k-i-add'">Cập nhật số xe - Tài xế</kendo-button>
+    <kendo-button ng-click="CarIsGo()" class="k-danger"><i class="glyphicon glyphicon-log-out"></i>Xuất bến</kendo-button>
+    
+    <kendo-button ng-click="BookTicketViewGrid()" style="margin-right:5px" class="pull-right"><i class="glyphicon glyphicon-th-list"></i></kendo-button>
+    <kendo-button ng-click="BookTicketViewList()" style="margin-right:5px" class="pull-right"><i class="glyphicon glyphicon-th"></i></kendo-button>
+    
+    <kendo-button ng-if="currentUser.IsAllowRouter" ng-click="openWndCarDateGo()" style="margin-right:10px" class="pull-right k-danger" icon="'k-icon k-i-film'">Thêm chuyến</kendo-button>
+
+
+    <div kendo-window="controls.wndCarDateGo" k-title="'Thêm chuyến xe'" k-modal="true" k-width="750" k-heigh="500" k-visible="false" ng-init="Init()">
+        <div class="col-xs-12 left-section">
+
+            <div class="col-xs-12 item-seat">
+                <div class="col-xs-5">
+                    <label class="item-label">Ngày:</label>
+                </div>
+                <div class="col-xs-7">
+                    <input kendo-date-picker
+                            @*ng-model="endDate"*@
+                            k-ng-model="endDate"
+                            data-k-format="'dd/MM/yyyy'"
+                            k-culture="'vi-VN'" k-on-change="onChangeDate()" />
+                </div>
+            </div>
+
+            <div class="col-xs-12 item-seat">
+                <div class="col-xs-5">
+                    <label class="item-label" style="color:red; font-size:130%;">Giờ:</label>
+                </div>
+                <div class="col-xs-7">
+                    <input kendo-combo-box="controls.ddlTime" k-data-source="timeAll"  style="color:red; font-size:130%;"
+                            ng-model="car.GoTime"
+                            k-data-text-field="'TimeGo'"
+                            k-data-value-field="'TimeGo'" @*k-on-change="onChangeTime()"*@ />
+                </div>
+            </div>
+
+            <div class="col-xs-12 item-seat">
+                <div class="col-xs-5">
+                    <label class="item-label">Tài xế:</label>
+                </div>
+                <div class="col-xs-7">
+                    <input class="k-textbox" type="text" ng-model="car.Driver" />
+                </div>
+            </div>
+
+            <div class="col-xs-12 item-seat">
+                <div class="col-xs-5">
+                    <label class="item-label">Biển số:</label>
+                </div>
+                <div class="col-xs-7">
+                    <input class="k-textbox" type="text" ng-model="car.CarNumber" />
+                </div>
+            </div>
+
+            <div class="col-xs-12 item-seat ng-hide">
+                <div class="col-xs-5">
+                    <label class="item-label">Tuyến:</label>
+                </div>
+                <div class="col-xs-7">
+                    <input kendo-combo-box="controls.cbRoute" k-filter="'contains'" k-min-length="2"
+                            k-data-text-field="'RouteName'" k-data-value-field="'RouteID'"
+                            k-placeholder="'Chọn tuyến'" ng-model="RouteID"/>
+                </div>
+            </div>
+
+            <hr />
+            <div class="col-xs-12 text-right">
+                <kendo-button class="k-primary k-button k-button-icontext" ng-click="InsertCarDateGo()">Cập nhật</kendo-button>
+                <kendo-button class="k-button k-button-icontext" ng-click="controls.wndCarDateGo.close()">Đóng</kendo-button>
+            </div>
+        </div>
+    </div>
+
+    <div kendo-window="controls.wndCarDateGoUpdate" k-title="'Cập nhật Số xe - Tài xế'" k-modal="true" k-width="500" k-heigh="500" k-visible="false" >
+        <div class="col-xs-12 left-section">
+
+            <div class="col-xs-12 item-seat">
+                <div class="col-xs-4">
+                    <label class="item-label">Tài xế:</label>
+                </div>
+                <div class="col-xs-8">
+                    <input class="k-textbox" type="text" ng-model="car.DriverUpdate" />
+                </div>
+            </div>
+
+            <div class="col-xs-12 item-seat">
+                <div class="col-xs-4">
+                    <label class="item-label">Biển số:</label>
+                </div>
+                <div class="col-xs-8">
+                    <input class="k-textbox" type="text" ng-model="car.CarNumberUpdate" />
+                </div>
+            </div>
+
+            <div class="col-xs-12 item-seat">
+                <div class="col-xs-4">
+                    <label class="item-label">Đóng sổ (ĐS):</label>
+                </div>
+                <div class="col-xs-8">
+                    <input type="checkbox" id="Transship" class="k-checkbox" ng-model="car.IsTransship" />
+                    <label class="k-checkbox-label" for="Transship"></label>
+                </div>
+            </div>
+
+            <div class="col-xs-12 item-seat">
+                <div class="col-xs-4">
+                    <label class="item-label">Xe mới (XM):</label>
+                </div>
+                <div class="col-xs-8">
+                    <input type="checkbox" id="NewBus" class="k-checkbox" ng-model="car.IsNewBus" />
+                    <label class="k-checkbox-label" for="NewBus"></label>
+                </div>
+            </div>
+
+            <hr />
+            <div class="col-xs-12 text-right">
+                <kendo-button class="k-primary k-button k-button-icontext" ng-click="UpdateCarDateGo()">Cập nhật</kendo-button>
+                <kendo-button class="k-button k-button-icontext" ng-click="controls.wndCarDateGoUpdate.close()">Đóng</kendo-button>
+            </div>
+        </div>
+    </div>
+
+</div>
+        
+
+    
+
+<style>
+    .k-warning {
+        color: #fff;
+        background-color: #f0ad4e;
+        border-color: #f0ad4e;
+    }
+
+        .k-warning:hover {
+            color: #fff;
+            background-color: #f0ad4e;
+            border-color: #f0ad4e;
+        }
+
+    .k-success {
+        color: #fff;
+        background-color: #5cb85c;
+        border-color: #5cb85c;
+    }
+
+        .k-success:hover {
+            color: #fff;
+            background-color: #5cb85c;
+            border-color: #5cb85c;
+        }
+
+    .k-danger {
+        color: #fff;
+        background-color: #d9534f;
+        border-color: #d9534f;
+    }
+
+        .k-danger:hover {
+            color: #fff;
+            background-color: #d9534f;
+            border-color: #d9534f;
+        }
+</style>

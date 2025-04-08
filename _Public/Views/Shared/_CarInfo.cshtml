@@ -1,0 +1,15 @@
+﻿
+<div ng-init="GetCarByID()" style="margin-top:10px;margin-top: 10px;padding: 5px;margin-bottom: 5px;border: 1px solid transparent;border-radius: 4px;color: #c09853;
+    background-color: #fcf8e3;
+    width: 100%;
+    float: left;">
+    <div style="width:60%;float:left">
+        <span style="color:black">Tài xế: <strong style="color:red">{{CarModel.Driver}}</strong> - Số xe: <strong style="color:red">{{CarModel.CarNumber}}</strong>.
+          <strong style="color:red">{{CarModel.Note}}</strong>
+        </span>
+    </div>
+    <div style="width:40%;float:left;text-align:right;color:black">
+        <span>Ghế trống: <strong style="color:red">{{totalSeatEmpty}}</strong> - Ghế đã đặt: <strong style="color:red">{{totalSeat}}</strong>
+        - Đã T.toán: <strong style="color:red">{{totalSeatPayment}}</strong></span>
+    </div>
+    </div>

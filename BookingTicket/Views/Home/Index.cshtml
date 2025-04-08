@@ -1,0 +1,96 @@
+﻿@using BookingTicket.Models
+@{
+    var objUser = SysUserModels.Current.CurrentUser();
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thịnh Phát - Quản lý đặt vé</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/css/toastr")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div id="wrapper" ng-app="BookingTicketApp" ng-cloak class="ng-cloak" ng-controller="AppController">
+        <input id="currentUser" value='@Html.Raw(Json.Encode(objUser))' style="display:none" />
+        <div class="page page-home" ng-view>
+
+        </div>
+        <div class="footer">
+            <div class="footer-top">
+                <table>
+                    <thead>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><div class="item-footer empty-seat" style="border: 1px solid"></div><label>Ghế trống</label></td>
+                            @*<td><div class="item-footer "></div>Ghế khóa</td>*@
+                            <td><div class="item-footer seat-red"></div><label>Ghế không thông tin</label></td>
+                            <td><div class="item-footer seat-pink"></div><label>Ghế có thông tin</label></td>
+                            <td><div class="item-footer seat-paied"></div><label>Đã T.toán</label></td>
+                            <td><div class="item-footer seat-notpaid"></div><label>Không thu tiền</label></td>
+                            @*<td><div class="item-footer seat-deposit"></div><label>Ghế đặt cọc</label></td>*@
+                            @*<td><div class="item-footer"></div>Ghế hủy</td>*@
+                            <td><div class="item-footer blue-address"></div><label>Trung chuyển</label></td>
+                            <td><div class="item-footer green-address"></div><label>Điểm đón</label></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="footer-bottom">
+                <table>
+                    <thead>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label style="color: white;margin-right: 10px; font-weight: bold;font-size:120%;">Đ: Đặt vé - </label>
+                                <label style="color: white;margin-right: 10px; font-weight: bold;font-size:120%;">C: Cập nhật thông tin - </label>
+                                <label style="color: white;margin-right: 10px; font-weight: bold;font-size:120%;">D: Di chuyển ghế - </label>
+                                <label style="color: white;margin-right: 10px; font-weight: bold;font-size:120%;">In: In vé - </label>
+                                <label style="color: white;margin-right: 10px; font-weight: bold;font-size:120%;">ĐL: Đặt lại</label>
+                            </td>
+                            @*<td>
+                                <label style="color: white; margin-right: 17px;float: right;font-weight: bold;font-size:120%;">Thịnh phát bến tre</label>
+                            </td>*@
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="loadingWrapper" class="loadingWrapper">
+        <div class="cssload-thecube">
+            <div class="cssload-cube cssload-c1"></div>
+            <div class="cssload-cube cssload-c2"></div>
+            <div class="cssload-cube cssload-c4"></div>
+            <div class="cssload-cube cssload-c3"></div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/toastr")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/kendo")
+
+    @Scripts.Render("~/bundles/app")
+    @*@RenderSection("scripts", required: false)*@
+    <script type="text/ng-template" id="template">
+        <div style="height:50px;">
+            <div class="col-xs-10" style="padding:0">
+                <label>{{dataItem.TextData}}</label>
+            </div>
+            <div class="col-xs-1" style="float:right; padding:0">
+                <button class="btn btn-danger"><i class="glyphicon glyphicon-edit" ng-click="viewInfo(dataItem)"></i></button>
+            </div>
+        </div>
+    </script>
+</body>
+</html>

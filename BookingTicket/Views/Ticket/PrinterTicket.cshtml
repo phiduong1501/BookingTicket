@@ -1,0 +1,62 @@
+﻿@using System.Data
+@{
+    DataTable dtSeat = (DataTable)ViewBag.dtSeat;
+}
+<link href="~/Content/print.css" rel="stylesheet" />
+<body>
+    <div class="row" style="text-align:center">
+        <strong style="font-size: 16px;">Công ty TNHH TM-DV THỊNH PHÁT</strong>
+    </div>
+    <div class="row">
+        <div class="span4" style="text-align:left">
+            Tuyến:
+            <strong style="">@dtSeat.Rows[0]["StationFromName"]</strong><br>
+        </div>
+        <div class="span2" style="text-align:center">
+            <strong>
+                ===>
+            </strong>
+        </div>
+        <div class="span4" style="text-align:right">
+            <strong>@dtSeat.Rows[0]["StationToName"]</strong>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="span5" style="text-align:left">
+            Tài xế:
+            <strong style="margin-top:5px;font-size:30px">@dtSeat.Rows[0]["Driver"]</strong>
+        </div>
+        <div class="span5" style="text-align:right">
+            Số xe:
+            <strong style="margin-top:5px;font-size:30px">@dtSeat.Rows[0]["CarNumber"]</strong>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span5" style="text-align:left">
+            Ngày: <strong>@DateTime.Parse(dtSeat.Rows[0]["GoDate"].ToString()).ToString("dd/MM/yyyy")</strong>
+
+        </div>
+        <div class="span5" style="text-align:right">
+            Nhân viên:
+            <strong>@dtSeat.Rows[0]["FullName"]</strong>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span5" style="text-align:left">
+            <strong>Giờ: @dtSeat.Rows[0]["GoTime"]</strong>
+        </div>
+        <div class="span5" style="text-align:right">
+            <strong>Số ghế: @dtSeat.Rows[0]["Description"]</strong>
+        </div>
+    </div>
+    <div class="row">
+        <hr style="border-width: 2px;">
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <span>Quý khách vui lòng có mặt tại nhà xe trước giờ khởi hành 15 phút </span>
+    </div>
+
+</body>

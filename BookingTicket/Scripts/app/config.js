@@ -1,0 +1,1 @@
+﻿const UrlPrinterService = "http://printticket.com/PrintSevice.asmx/PrintByClient";

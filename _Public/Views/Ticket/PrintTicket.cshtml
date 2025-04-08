@@ -1,0 +1,92 @@
+﻿@using System.Data
+@{
+    DataTable dtSeat = (DataTable)ViewBag.dtSeat;
+    decimal TotalAmount = 0;
+    string lstSeat = "";
+    string Address = "";
+    foreach (DataRow row in dtSeat.Rows)
+    {
+        TotalAmount += decimal.Parse(row["Price"].ToString());
+        lstSeat += row["Description"].ToString() + ",";
+        if (row["IsPickUp"].ToString() == "1")
+        {
+            Address += row["Address"].ToString() + ", ";
+        }
+    }
+}
+<link href="~/Content/print.css" rel="stylesheet" />
+<body>
+    <div class="row" style="text-align:center">
+        <strong style="font-size: 16px;">Công ty TNHH TM-DV THỊNH PHÁT</strong>
+    </div>
+    <div class="row">
+        <strong style="font-size:13px;text-decoration: underline;">Bến Tre: </strong>
+        <span style="font-size:13px">(075) 3561.561 - (075) 3829.317 - (075) 3824.862</span>
+    </div>
+    <div class="row">
+        <span style="font-size:13px">82A Khu phố 2, Đại lộ Đồng Khởi, Quốc Lộ 60, Thành Phố Bến Tre</span>
+</div>
+    <div class="row">
+        <strong style="font-size:13px;text-decoration: underline;">HCM: </strong>
+        <span style="font-size:13px"> (08) 3830.3042 - (08) 3839.3625 - 0913 96.50.50</span>
+</div>
+    <div class="row">
+        <span style="font-size:13px">25A Sư Vạn Hạnh, Phường 9, Quận 5, Thành Phố Hồ Chí Minh</span>
+</div>
+    <div class="row">
+        <hr style="border-width: 2px;">
+    </div>
+
+    <div class="row">
+        <div class="span4" style="text-align:left">
+
+            <strong style="">@dtSeat.Rows[0]["StationFromName"]</strong><br>
+            <strong style="margin-top:5px;">@dtSeat.Rows[0]["StationFromShortName"]</strong>
+        </div>
+        <div class="span2" style="text-align:center">
+            <strong>
+                ===>
+            </strong>
+        </div>
+        <div class="span4" style="text-align:right">
+            <strong>@dtSeat.Rows[0]["StationToName"]</strong>
+            <br>
+            <strong style="margin-top:5px;">@dtSeat.Rows[0]["StationToShortName"]</strong>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span5" style="text-align:left">
+            <strong>Ngày đi: @DateTime.Parse(dtSeat.Rows[0]["GoDate"].ToString()).ToString("dd/MM/yyyy")</strong><br>
+            <strong style="margin-top:5px;font-size:30px">@dtSeat.Rows[0]["GoTime"]</strong>
+        </div>
+        <div class="span5" style="text-align:right">
+            <strong>Ghế(@dtSeat.Rows.Count)</strong><br>
+            <strong style="margin-top:5px;font-size:30px">@lstSeat.Trim(',')</strong>
+        </div>
+    </div>
+    <div class="row">
+        <div class="span5" style="text-align:left">
+            <strong>Giá: @decimal.Parse(dtSeat.Rows[0]["Price"].ToString()).ToString("#,###")/vé</strong>
+        </div>
+        <div class="span5" style="text-align:right">
+            <strong>Tổng tiền: @TotalAmount.ToString("#,###") đ</strong>
+        </div>
+    </div>
+    <div class="row">
+        <hr style="border-width: 2px;">
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <span>Đón: @Address.Trim(',')</span>
+    </div>
+    <div class="row">
+        <span>Nhân viên: @dtSeat.Rows[0]["FullName"]</span>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <span>Vé mua rồi miễn trả lại. Quý khách vui lòng có mặt trước giờ khởi hành 15 phút </span>
+    </div>
+
+</body>

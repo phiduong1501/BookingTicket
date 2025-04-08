@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Danh sách trung chuyển";
+}
+@Html.Partial("_Header")
+
+<div id="page-wrapper">
+    <div ng-controller="TransitController" ng-init="Init()" class="col-xs-12">
+        @Html.Partial("_ActionTicket")
+        @Html.Partial("_CarInfo")
+        <div>
+            DANH SÁCH TRUNG CHUYỂN
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr class="table-header">
+                        <th>STT</th>
+                        <th>Địa chỉ đón</th>
+                        <th>Tên khách hàng</th>
+                        <th>Số điện thoại</th>
+                        <th>Số ghế</th>
+                        <th>Ghi chú</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="transit in listTransit" ng-if="listTransit.length > 0">
+                        <td><input style="padding: 5px 5px 5px 11px;font-weight: bold;width: 34px;" ng-model="transit.OrderTransit"/> </td>
+                        <td>{{transit.Address}}</td>
+                        <td>{{transit.PassengerName}}</td>
+                        <td>{{transit.Mobile}}</td>
+                        <td>{{transit.Descriptions}}</td>
+                        <td>{{transit.Note}}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">
+                            <kendo-button class="k-warning" ng-click="SaveOrderIndex()">Lưu sắp xếp</kendo-button>
+                            <kendo-button ng-click="PrintTransit()" class="k-primary" icon="'k-icon k-i-print'">In danh sách</kendo-button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+

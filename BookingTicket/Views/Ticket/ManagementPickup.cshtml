@@ -1,0 +1,124 @@
+﻿@Html.Partial("_Header")
+@using BookingTicket.Models
+@{
+    var objUser = SysUserModels.Current.CurrentUser();
+}
+
+<div id="page-wrapper">
+    @if (objUser.IsAllowManager)
+    {
+        <div ng-controller="ManagementPickupController" ng-init="Init()" class="col-xs-12 left-section">
+            <div class="col-xs-12 item-seat">
+                <div class="col-xs-1">
+                    <label class="item-label">Tuyến:</label>
+                </div>
+                <div class="col-xs-5">
+                    <input kendo-combo-box="controls.cbRoute" k-filter="'contains'" k-min-length="2"
+                           k-data-text-field="'RouteName'" k-data-value-field="'RouteID'"
+                           k-placeholder="'Chọn tuyến'" k-on-change="onChangeRoute()" ng-model="model.RouteID" disabled />
+                </div>
+            </div>
+            <div class="col-xs-12 item-seat">
+                <div class="col-xs-1">
+                    <label class="item-label">Điểm đón:</label>
+                </div>
+                <div class="col-xs-5">
+                    <input class="k-textbox" placeholder="Nhập tên điểm đón" ng-model="model.Address" />
+                </div>
+            </div>
+            <div class="col-xs-12 item-seat">
+                <div class="col-xs-1">
+                    <label class="item-label">Ghi chú:</label>
+                </div>
+                <div class="col-xs-5">
+                    <input class="k-textbox" placeholder="Nhập ghi chú" ng-model="model.Note" />
+                </div>
+            </div>
+            <div class="col-xs-12 item-seat">
+                <div class="col-xs-1">
+                    <label class="item-label">Loại:</label>
+                </div>
+                <div class="col-xs-5" style="margin-top: 8px;">
+                    <input type="radio" name="type" id="type1" class="k-radio" ng-click="model.Type = 1" ng-checked="model.Type == 1">
+                    <label class="k-radio-label" for="type1">Đón dọc đường</label>
+                    <input type="radio" name="type" id="type2" class="k-radio" ng-click="model.Type = 2" ng-checked="model.Type == 2">
+                    <label class="k-radio-label" for="type2">Trung chuyển</label>
+                </div>
+            </div>
+            <div class="col-xs-12 item-seat">
+                <div class="col-xs-1">
+                </div>
+                <div class="col-xs-5">
+                    <kendo-button class="k-success k-button k-button-icontext" ng-click="InsertPickup()">Cập nhật</kendo-button>
+                    <kendo-button class="k-danger k-button k-button-icontext" ng-click="ClearPickup()">Hủy</kendo-button>
+                </div>
+            </div>
+            <div class="col-xs-12 item-seat">
+                <div class="col-xs-6">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped" id="tbListRouterExcell">
+                            <thead>
+                                <tr class="table-header">
+                                    <th colspan="2">
+                                        ĐÓN DỌC ĐƯỜNG
+                                        <input class="k-textbox" style="width:79%" ng-model="q1" />
+                                        @*<kendo-button class="k-success k-button k-button-icontext" ng-click="SearchPickup()">Tìm</kendo-button>*@
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="pickup in pickups | filter:q1 as results">
+                                    <td ng-class="{'seat-red' : model.AddressID == pickup.AddressID}">{{pickup.Address}}</td>
+                                    <td ng-class="{'seat-red' : model.AddressID == pickup.AddressID}">
+                                        <kendo-button class="k-success k-button k-button-icontext" ng-click="EditPickup(pickup)">Sửa</kendo-button>
+                                        <kendo-button class="k-danger k-button k-button-icontext" ng-click="DeletePickup(pickup)">Xóa</kendo-button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped" id="tbListRouterExcell">
+                            <thead>
+                                <tr class="table-header">
+                                    <th colspan="2">
+                                        TRUNG CHUYỂN
+                                        <input class="k-textbox" style="width:81%" ng-model="q2" />
+                                        @*<kendo-button class="k-success k-button k-button-icontext" ng-click="SearchTransit()">Tìm</kendo-button>*@
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="transit in transits | filter:q2 as results">
+                                    <td ng-class="{'seat-red' : model.AddressID == transit.AddressID}">{{transit.Address}}</td>
+                                    <td ng-class="{'seat-red' : model.AddressID == transit.AddressID}">
+                                        <kendo-button class="k-success k-button k-button-icontext" ng-click="EditPickup(transit)">Sửa</kendo-button>
+                                        <kendo-button class="k-danger k-button k-button-icontext" ng-click="DeletePickup(transit)">Xóa</kendo-button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="col-xs-12 left-section">
+            <strong>Bạn không có quyền truy cập</strong>
+        </div>
+    }
+</div>
+
+<style>
+    .nav.navbar-nav.side-nav {
+        display: none;
+    }
+
+    #wrapper {
+        padding-left: 0;
+    }
+</style>

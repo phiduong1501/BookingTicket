@@ -1,0 +1,194 @@
+﻿@Html.Partial("_Header")
+@using BookingTicket.Models
+@{
+    var objUser = SysUserModels.Current.CurrentUser();
+}
+
+<div id="page-wrapper" ng-controller="ManagementCarController" ng-init="Init()">
+    @if (objUser.IsAllowRouter)
+    {
+        <div class="col-xs-12 left-section">
+            <div class="col-xs-12" style="display:inline-block">
+            <div class="col-xs-6 item-seat">
+                <div class="col-xs-4 item-seat">
+                    <div class="col-xs-3">
+                        <label class="item-label" style="color:red; font-size:130%;">Giờ:</label>
+                    </div>
+                    <div class="col-xs-9">
+                        <input kendo-combo-box="controls.ddlTime" k-data-source="timeAll"  style="color:red; font-size:130%;"
+                               ng-model="car.GoTime"
+                               k-data-text-field="'TimeGo'"
+                               k-data-value-field="'TimeGo'" @*k-on-change="onChangeTime()"*@ />
+                    </div>
+                </div>
+
+                <div class="col-xs-4 item-seat">
+                    <div class="col-xs-3">
+                        <label class="item-label">Ngày:</label>
+                    </div>
+                    <div class="col-xs-9">
+                        <input kendo-date-picker
+                               @*ng-model="endDate"*@
+                               k-ng-model="endDate"
+                               data-k-format="'dd/MM/yyyy'"
+                               k-culture="'vi-VN'" k-on-change="onChangeDate()" />
+                    </div>
+                </div>
+
+                <div class="col-xs-4 item-seat">
+                    <div class="col-xs-3">
+                        <label class="item-label">Tuyến:</label>
+                    </div>
+                    <div class="col-xs-9">
+
+                        <input kendo-combo-box="controls.cbRoute" k-filter="'contains'" k-min-length="2"
+                               k-data-text-field="'RouteName'" k-data-value-field="'RouteID'"
+                               k-placeholder="'Chọn tuyến'" k-on-change="onChangeRoute()" ng-model="RouteID" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-xs-6 item-seat">
+            </div>
+            </div>
+            
+            <div class="col-xs-12" style="display:inline-block">
+            <div class="col-xs-6 item-seat">
+                <div class="col-xs-4 item-seat">
+                    <div class="col-xs-4">
+                        <label class="item-label">Tài xế:</label>
+                    </div>
+                    <div class="col-xs-8">
+                        <input class="k-textbox" type="text" ng-model="car.Driver" />
+                    </div>
+                </div>
+                <div class="col-xs-4 item-seat">
+                    <div class="col-xs-4">
+                        <label class="item-label">Biển số:</label>
+                    </div>
+                    <div class="col-xs-8">
+                        <input class="k-textbox" type="text" ng-model="car.CarNumber" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 item-seat">
+            </div>
+            </div>
+
+            <div class="col-xs-12"  style="display:inline-block">
+                <div class="col-xs-6">
+                <div class="col-xs-6">
+                    <kendo-button class="k-warning k-button k-button-icontext"><a download="DanhSachChuyen@(DateTime.Now.ToString("dd_MM_HH_mm") + ".xls")" href="#" onclick="return ExcellentExport.excel(this, 'tbListRouterExcell', 'Sheet 1');">Xuất excel</a></kendo-button>
+                    @*<kendo-button class="k-success k-button k-button-icontext" ng-click="IsChangeOrInsert()">{{isUpdate ? 'Cập nhật' : 'Thêm mới'}}</kendo-button>*@
+                    <kendo-button class="k-primary k-button k-button-icontext" ng-click="IsChangeOrInsert()">{{isUpdate ? 'Cập nhật' : 'Thêm mới'}}</kendo-button>
+                    <kendo-button ng-if="isUpdate" class="k-danger k-button k-button-icontext" ng-click="DeleteCar()">Xóa xe</kendo-button>
+                    <kendo-button ng-if="isUpdate" class="k-warning k-button k-button-icontext" ng-click="CancelUpdate()">Hủy cập nhật</kendo-button>
+                    
+                </div>
+                <div style="text-align:right;color:blue" ng-show="controls.cbRoute.dataItem().RouteName" class="col-xs-6 item-seat">
+                    {{controls.cbRoute.dataItem().RouteName}} -   Tổng: {{times.length}} chuyến
+                </div>
+                </div>
+                <div class="col-xs-6">
+                </div>
+            </div>
+
+            <div class="col-xs-12"  style="display:inline-block">
+                <div class="col-xs-6">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped" id="tbListRouterExcell">
+                            <thead>
+                                <tr ng-show="false">
+                                    <td colspan="9"><span>{{controls.cbRoute.dataItem().RouteName}}</span></td>
+                                </tr>
+                                <tr class="table-header">
+                                    <th >Giờ</th>
+                                    <th >Xe</th>
+                                    <th >Tài xế</th>
+                                    <th >Đặt chổ</th>
+                                    <th >Thanh toán</th>
+                                    <th >Ghế Trống</th>
+                                    <th >Tình Trạng</th>
+                                    <th ></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="id-{{time.CarDateGoID}}" ng-click="LoadCarDateGoInfo(time)" ng-repeat="time in times">
+                                    <td ng-class="{'seat-red': CarDateGoIDTemp == time.CarDateGoID }">{{time.GoTime}}</td>
+                                    <td ng-class="{'seat-red': CarDateGoIDTemp == time.CarDateGoID }">{{time.CarNumber}}</td>
+                                    <td ng-class="{'seat-red': CarDateGoIDTemp == time.CarDateGoID }">{{time.Driver}}</td>
+                                    <td ng-class="{'seat-red': CarDateGoIDTemp == time.CarDateGoID }">{{time.SumSeatPickup}}</td>
+                                    <td ng-class="{'seat-red': CarDateGoIDTemp == time.CarDateGoID }">{{time.SumSeatPaied}}</td>
+                                    <td ng-class="{'seat-red': CarDateGoIDTemp == time.CarDateGoID }">{{time.SumSeatEmpty}}</td>
+                                    <td ng-class="{'seat-red': CarDateGoIDTemp == time.CarDateGoID }">{{time.TypeID == 1 ? 'Mặc định' : 'Tăng cường'}}</td>
+                                    <td ng-class="{'seat-red': CarDateGoIDTemp == time.CarDateGoID }" style="color:darkblue;">|</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-striped" id="tbListRouterExcell">
+                            <thead>
+                                <tr ng-show="false">
+                                    <td colspan="9"><span>{{controls.cbRoute.dataItem().RouteName}}</span></td>
+                                </tr>
+                                <tr class="table-header">
+                                    <th >Xe</th>
+                                    <th >Giờ</th>
+                                    <th >Tuyến</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr id="id-{{time.CarDateGoID}}" ng-click="LoadCarDateGoInfo(time)" ng-repeat="time in times">
+                                    <td ng-class="{'seat-red': CarDateGoIDTemp == time.CarDateGoID }">{{time.CarNumber}}</td>
+                                    <td ng-class="{'seat-red': CarDateGoIDTemp == time.CarDateGoID }">{{time.Driver}}</td>
+                                    <td ng-class="{'seat-red': CarDateGoIDTemp == time.CarDateGoID }">{{time.SumSeatPickup}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+    else
+    {
+        <div class="col-xs-12 left-section">
+            <strong>Bạn không có quyền truy cập</strong>
+        </div>
+    }
+</div>
+
+
+<style>
+    .trcolor {
+        background: #c77023;
+    }
+
+    .nav.navbar-nav.side-nav {
+        display: none;
+    }
+
+    #wrapper {
+        padding-left: 0;
+    }
+
+    tr th {
+        background: #0973c7;
+        color: #fff;
+        border: #0973c7;
+        border-top: none !important;
+        text-align: center;
+    }
+
+    tr td {
+        text-align: center;
+    }
+
+    tr.selected {
+        background-color: #FFCF8B !important;
+    }
+</style>

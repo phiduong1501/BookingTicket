@@ -1,0 +1,64 @@
+﻿.row {
+    width: 100%;
+    float: left;
+    margin: 5px;
+}
+
+.span3 {
+    width: 30%;
+    float: left;
+}
+
+.span2 {
+    width: 20%;
+    float: left;
+}
+
+.span4 {
+    width: 40%;
+    float: left;
+}
+
+.span7 {
+    width: 70%;
+    float: left;
+}
+
+.span5 {
+    width: 50%;
+    float: left;
+}
+
+.span6 {
+    width: 60%;
+    float: left;
+}
+
+/*
+
+RESPONSTABLE 2.0 by jordyvanraaij
+  Designed mobile first!
+
+If you like this solution, you might also want to check out the 1.0 version:
+  https://gist.github.com/jordyvanraaij/9069194
+
+*/
+.responstable {
+    margin: 1em 0;
+    width: 100%;
+    background: #FFF;
+    color: #024457;
+    border: 1px solid #167F92;
+    border-collapse: collapse;
+    border-spacing: 0;
+
+}
+
+    .responstable td {
+        border: 1px solid #167F92;
+        padding:5px;
+    }
+     .responstable th {
+        border: 1px solid #167F92;
+        padding:5px;
+    }

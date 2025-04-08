@@ -1,0 +1,79 @@
+﻿@using System.Data
+@{
+    ViewBag.Title = "Danh sách khách hàng";
+    Layout = null;
+    DataTable dtSeatOfTimeGo = (DataTable)ViewBag.dtSeatOfTimeGo;
+    var totalSeat = 0;
+    var totalSeatPay = 0;
+    var STT = 0;
+}
+<link href="~/Content/print.css" rel="stylesheet" />
+<div class="row">
+    <div class="span6">
+        <strong style="font-size: 20px;">Thịnh Phát</strong><br />
+        <strong>Chuyến: @dtSeatOfTimeGo.Rows[0]["GoTime"] - ngày @DateTime.Parse(dtSeatOfTimeGo.Rows[0]["GoTime"].ToString()).ToString("dd/MM/yyyy")</strong>
+    </div>
+    <div class="span4">
+        <strong style="font-size: 20px;">@dtSeatOfTimeGo.Rows[0]["RouteName"]</strong><br />
+        <div class="row">
+            <span class="span5">Số xe: @dtSeatOfTimeGo.Rows[0]["CarNumber"]</span>
+            <span class="span5">Tài xế: @dtSeatOfTimeGo.Rows[0]["Driver"]</span>
+        </div>
+    </div>
+</div>
+<div class="row" style="text-align:center">
+    <strong style="font-size: 21px;">DANH SÁCH KHÁCH HÀNG</strong>
+</div>
+<div class="row" style="width:98%;">
+    <table class="responstable">
+
+        <tr>
+        <tr>
+            <th style="width:10%;">STT</th>
+            <th style="width:30%;"><span>Địa chỉ đón</span></th>
+            <th style="width:15%;">Tên khách hàng</th>
+            <th style="width:10%;">Số điện thoại</th>
+            <th style="width:10%;">Số ghế</th>
+            <th style="width:30%;">Ghi chú</th>
+        </tr>
+
+        @foreach (DataRow row in dtSeatOfTimeGo.Rows)
+        {
+            if (int.Parse(row["SeatStatusID"].ToString()) > 0)
+            {
+                totalSeat++;
+                STT++;
+                if (row["PaymentStatusID"].ToString() == "1")
+                {
+                    totalSeatPay++;
+                }
+                <tr>
+                    <th>@STT</th>
+                    <th data-th="Driver details"><span>@row["Address"]</span></th>
+                    <th>@row["PassengerName"]</th>
+                    <th>@row["Mobile"]</th>
+                    <th>@row["Description"]</th>
+                    <th>@row["Note"]</th>
+                </tr>
+                
+            }
+        }
+    </table>
+</div>
+
+<div class="row">
+    <strong style="">Trước chuyến: </strong>
+    <span>Tổng số ghế: @totalSeat ghế</span>
+    <span> | Đã thanh toán: @totalSeatPay ghế</span>
+</div>
+<div class="row">
+    <strong style="">Sau chuyến: </strong>
+    <span>Tổng số ghế: ..... ghế</span>
+    <span> | Đã thanh toán: ..... ghế</span>
+    <span> | Đã hủy: ..... ghế</span>
+</div>
+<style>
+    .row {
+        width: 98% !important;
+    }
+</style>

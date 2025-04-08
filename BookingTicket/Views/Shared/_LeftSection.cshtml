@@ -1,0 +1,25 @@
+﻿<ul class="nav navbar-nav side-nav" ng-controller="LeftSectionController" ng-init="Init()">
+    <li class="left-item" style="margin-top: 10px; " / >
+        <input kendo-combo-box="controls.cbRoute" k-filter="'contains'" k-min-length="2"
+                k-data-text-field="'RouteName'" k-data-value-field="'RouteID'"
+                k-placeholder="'Chọn tuyến'" k-on-change="onChangeRoute()" ng-model="RouteID"  disabled />
+    </li>
+    <li  class="left-item">
+        <div kendo-calendar="controls.calendar" ng-change="changeDate()" ng-model="endDate" k-footer="false" k-culture="'vi-VN'" k-format="dd/MM/yyyy"></div>
+
+    </li>
+    <li class="left-item" ng-show="times.length > 0">
+        <div kendo-list-view="controls.lvTime" k-data-source="cars" k-selectable="true" k-on-change="onSelected($event)">
+            <div k-template ng-class="{
+                 'time':dataItem.TypeID == 1 ,
+                 'time-enhancement': dataItem.TypeID == 2,
+                 'time-isgo' : dataItem.IsGo == 1,
+                 'k-state-selected' : dataItem.CarDateGoID == CarDateGoID
+                 }">
+                    <h4 style="color:red">{{dataItem.GoTime}}</h4>
+                    <h6>{{dataItem.SumSeatPickup ? dataItem.SumSeatPickup : 0}}/{{dataItem.SumSeat}} {{dataItem.IsTransship}}</h6>
+                    <div kendo-progress-bar k-min="0" k-max="{{dataItem.SumSeat}}" ng-model="dataItem.SumSeatPickup" style="width: 98%; position: relative;top: -11px;height: 1px;" k-show-status="false"></div>
+            </div>
+        </div>
+    </li>
+</ul>

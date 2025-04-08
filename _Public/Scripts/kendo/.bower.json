@@ -1,0 +1,22 @@
+{
+  "name": "kendo",
+  "version": "2016.1.226",
+  "main": [
+    "js/kendo.all.min.js",
+    "js/telerikReportViewer-10.1.16.615.min.js",
+    "js/kendo.subset.2015.3.930.min.js"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "*/.*",
+    "*.json",
+    "src",
+    "*.yml",
+    "Gemfile",
+    "Gemfile.lock",
+    "*.md"
+  ],
+  "dependencies": {
+    "jquery": ">=1.6.3 <3"
+  }
+}

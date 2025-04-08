@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Danh sách ghế";
+}
+@Html.Partial("_Header")
+
+<div id="page-wrapper">
+    <div ng-controller="BookingController" ng-init="Init()" class="col-xs-12">
+        @Html.Partial("_ActionTicket")
+        @Html.Partial("_CarInfo")
+        <div class="table-responsive">
+            <table class="table table-hover table-striped" id="tbListTicketExcell">
+                <thead>
+                    <tr class="table-header">
+                        <th style="text-align:center">Số ghế</th>
+                        <th>Tên hành khách</th>
+                        <th>Số điện thoại</th>
+                        <th>Chặng</th>
+                        <th style="text-align:right">Tổng tiền</th>
+                        <th>Trạng thái</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="seat in lstseats" ng-show="seat.SeatStatusID >= 0">
+                        <td style="text-align:center">{{seat.Description}}</td>
+                        <td>{{seat.PassengerName}}</td>
+                        <td>{{seat.Mobile}}</td>
+                        <td>{{seat.RouteName}}</td>
+                        <td style="text-align:right">{{seat.SeatStatusID > 0 ? (seat.Price |currency : "" : 0) : 0 }}đ</td>
+                        <td>{{seat.StatusName}}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td colspan="2">Tổng tiền: {{getTotal()|currency : "" : 0}}đ</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div style="margin-top:5px">
+            <kendo-button ng-click="PrintTicketList()" class="k-primary" icon="'k-icon k-i-print'">In danh sách</kendo-button>
+            <kendo-button class="k-warning"><i class="fa fa-file-excel-o"></i><a style="text-decoration: none;color: white;" download="DanhSachGhe@(DateTime.Now.ToString("dd_MM_HH_mm") + ".xls")" href="#" onclick="return ExcellentExport.excel(this, 'tbListTicketExcell', 'Sheet 1');">Xuất excel</a></kendo-button>
+        </div>
+    </div>
+</div>
+

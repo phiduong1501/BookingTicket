@@ -1,0 +1,161 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng ký nhà xe</title>
+    <link rel="stylesheet" href="css/style.css">
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/css/toastr")
+</head>
+<body>
+
+    <div class="login ng-cloak" ng-app="BookingTicketApp" ng-cloak>
+        <div class="login-screen" ng-controller="AccountController">
+            <div class="app-title">
+                <h1>{{TitleRegister}}</h1>
+            </div>
+            <div class="login-form">
+                <div class="control-group">
+                    <input type="text" ng-model="UserName" class="login-field" value="" placeholder="Tên đăng nhập" id="login-name">
+                    <label class="login-field-icon fui-user" for="login-name"></label>
+                </div>
+                <div class="control-group">
+                    <input type="password" ng-model="Password" class="login-field" value="" placeholder="Mật khẩu" id="login-pass">
+                    <label class="login-field-icon fui-lock" for="login-pass"></label>
+                </div>
+                <div class="control-group">
+                    <input type="password" ng-model="PasswordConfirm" class="login-field" value="" placeholder="Nhập lại mật khẩu" id="login-passconfirm">
+                    <label class="login-field-icon fui-lock" for="login-passconfirm"></label>
+                </div>
+                <div class="control-group">
+                    <input type="text" ng-model="CompanyName" class="login-field" value="" placeholder="Tên nhà xe" id="login-companyname">
+                    <label class="login-field-icon fui-user" for="login-companyname"></label>
+                </div>
+                <div class="control-group">
+                    <input type="text" ng-model="Phone" class="login-field" value="" placeholder="Số điện thoại" id="login-phone">
+                    <label class="login-field-icon fui-user" for="login-phone"></label>
+                </div>
+                <div class="control-group">
+                    <input type="text" ng-model="Address" class="login-field" value="" placeholder="Địa chỉ" id="login-address">
+                    <label class="login-field-icon fui-user" for="login-address"></label>
+                </div>
+                <div class="control-group">
+                    <input type="text" ng-model="ContactName" class="login-field" value="" placeholder="Người liên hệ" id="login-contactname">
+                    <label class="login-field-icon fui-user" for="login-contactname"></label>
+                </div>
+                <div class="control-group">
+                    <input type="text" ng-model="ContactPhone" class="login-field" value="" placeholder="SĐT liên hệ" id="login-contactphone">
+                    <label class="login-field-icon fui-user" for="login-contactphone"></label>
+                </div>
+                <img ng-show="isLoading" style="width: 50px;" src="/Content/image/loading.gif">
+                <button id="btnLogin" ng-show="!isLoading" ng-click="Register()" class="btn btn-primary btn-large btn-block">Đăng ký</button>
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/toastr")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/kendo")
+    @Scripts.Render("~/bundles/app")
+</body>
+</html>
+<script>
+    $('#login-name').focus();
+    //Event enter
+    $('input').keypress(function (e) {
+        var key = e.which;
+        if (key == 13)  // the enter key code
+        {
+            $('#btnLogin').click();
+            return false;
+        }
+    });
+</script>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+        *:focus {
+            outline: none;
+        }
+
+    body {
+        font-family: Arial;
+        background-color: #3498DB;
+        padding: 50px;
+    }
+
+    .login {
+        margin: 20px auto;
+        width: 400px;
+    }
+
+    .login-screen {
+        background-color: #FFF;
+        padding: 20px;
+        border-radius: 5px;
+    }
+
+    .app-title {
+        text-align: center;
+        color: #777;
+    }
+
+    .login-form {
+        text-align: center;
+    }
+
+    .control-group {
+        margin-bottom: 10px;
+    }
+
+    input {
+        text-align: center;
+        background-color: #ECF0F1;
+        border: 2px solid transparent;
+        border-radius: 3px;
+        font-size: 16px;
+        font-weight: 200;
+        padding: 10px 0;
+        width: 300px;
+        transition: border .5s;
+    }
+
+        input:focus {
+            border: 2px solid #3498DB;
+            box-shadow: none;
+        }
+
+    .btn {
+        border: 2px solid transparent;
+        background: #3498DB;
+        color: #ffffff;
+        font-size: 16px;
+        line-height: 25px;
+        padding: 10px 0;
+        text-decoration: none;
+        text-shadow: none;
+        border-radius: 3px;
+        box-shadow: none;
+        transition: 0.25s;
+        display: block;
+        width: 300px;
+        margin: 0 auto;
+    }
+
+        .btn:hover {
+            background-color: #2980B9;
+        }
+
+    .login-link {
+        font-size: 12px;
+        color: #444;
+        display: block;
+        margin-top: 12px;
+    }
+</style>

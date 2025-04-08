@@ -1,0 +1,115 @@
+﻿@using System.Data
+@{
+    ViewBag.Title = "Danh sách khách hàng";
+    Layout = null;
+    DataTable dtSeatOfTimeGo = (DataTable)ViewBag.dtSeatOfTimeGo;
+
+
+
+}
+
+<link href="~/Content/print.css" rel="stylesheet" />
+<div class="row">
+    <div class="span6">
+        <strong style="font-size: 20px;">Thịnh Phát</strong><br />
+        <strong>Chuyến: @dtSeatOfTimeGo.Rows[0]["GoTime"] - ngày @DateTime.Parse(dtSeatOfTimeGo.Rows[0]["GoTime"].ToString()).ToString("dd/MM/yyyy")</strong>
+    </div>
+    <div class="span4">
+        <strong style="font-size: 20px;">@dtSeatOfTimeGo.Rows[0]["RouteName"]</strong><br />
+        <div class="row">
+            <span class="span5">Số xe: @dtSeatOfTimeGo.Rows[0]["CarNumber"]</span>
+            <span class="span5">Tài xế: @dtSeatOfTimeGo.Rows[0]["Driver"]</span>
+        </div>
+    </div>
+</div>
+
+<div class="row" style="width:98%;">
+    @foreach (DataRow row in dtSeatOfTimeGo.Rows)
+    {
+        if (Convert.ToInt16(row["SeatNumber"]) <= 33)
+        {
+            string strStyle = "";
+            if (Convert.ToInt16(row["SeatNumber"]) == 1 || Convert.ToInt16(row["SeatNumber"]) == 11)
+            {
+                strStyle = "style=border-right:none";
+            }
+            else if (Convert.ToInt16(row["SeatNumber"]) == 2 || Convert.ToInt16(row["SeatNumber"]) == 12)
+            {
+                strStyle = "style=border-left:none";
+            }
+            <div class="item" @strStyle>
+                @if (row["SeatStatusID"].ToString() != "-1")
+                {
+                    if (row["SeatStatusID"].ToString() == "1") 
+                    {
+                        <div><strong style="font-size: 22px;"> @row["Description"]</strong></div>
+                        if (Convert.ToInt16(row["COUNT"].ToString()) >1)
+                        {
+                            <div> <strong style="font-size: 20px;"> @row["COUNT"]G</strong> </div>
+                        }
+                        <div><strong style="font-size: 20px;"> @row["Mobile"]</strong></div>
+                        <div><strong style="font-size: 40px; margin-left: 40%; line-height: 75px;"> X </strong></div>
+                        <div><strong style="font-size: 16px;"> @row["Address"]</strong></div>
+                    }
+                    else 
+                    {
+                        <div><strong style="font-size: 22px;"> @row["Description"]</strong></div>
+                        if (Convert.ToInt16(row["COUNT"].ToString()) >1)
+                        {
+                            <div> <strong style="font-size: 20px;"> @row["COUNT"]G</strong> </div>
+                        }
+                        <div><strong style="font-size: 20px;"> @row["Mobile"]</strong></div>
+                        <div><strong style="font-size: 20px;"> @row["PassengerName"]</strong></div>
+                        <div><strong style="font-size: 16px;"> @row["Address"]</strong></div>
+                    }
+                }
+                else
+                {
+                    <strong style="line-height: 75px;margin-left: 40%;font-size: 40px;">@row["Description"]</strong>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="item2">
+                @if (row["SeatStatusID"].ToString() != "-1")
+                {
+                    <div><strong style="font-size: 22px;"> @row["Description"]</strong></div>
+                    if (Convert.ToInt16(row["COUNT"].ToString()) > 1)
+                    {
+                        <div> <strong style="font-size: 20px;"> @row["COUNT"]G</strong> </div>
+                    }
+                    <div><strong style="font-size: 20px;"> @row["Mobile"]</strong></div>
+                    <div><strong style="font-size: 20px;"> @row["PassengerName"]</strong></div>
+                    <div><strong style="font-size: 16px;"> @row["Address"]</strong></div>
+
+                }
+                else
+                {
+                    <strong style="line-height: 75px;margin-left: 40%;font-size: 40px;">@row["Description"]</strong>
+                }
+            </div>
+        }
+    }
+</div>
+<style>
+    .item {
+        width: 22%;
+        float: left;
+        height: 100px;
+        border: 1px solid black;
+        padding: 5px;
+    }
+
+    .item2 {
+        width: 17%;
+        float: left;
+        height: 100px;
+        border: 1px solid black;
+        padding: 5px;
+    }
+
+    .row {
+        width: 98% !important;
+    }
+</style>

@@ -1,0 +1,57 @@
+﻿@using System.Data
+@using System
+@{
+    ViewBag.Title = "Danh sách trung chuyển";
+    Layout = null;
+    DataTable dtTransit = (DataTable)ViewBag.dtTransit;
+    var totalSeat = 0;
+}
+<link href="~/Content/print.css" rel="stylesheet" />
+<div class="row">
+    <div class="span6">
+        <strong style="font-size: 20px;">Thịnh Phát</strong><br />
+        <strong>Chuyến: @dtTransit.Rows[0]["GoTime"] - ngày @DateTime.Parse(dtTransit.Rows[0]["GoTime"].ToString()).ToString("dd/MM/yyyy")</strong>
+    </div>
+    <div class="span4">
+        <strong style="font-size: 20px;">@dtTransit.Rows[0]["RouteName"]</strong><br />
+        <div class="row">
+            <span class="span5">Số xe: @dtTransit.Rows[0]["CarNumber"]</span>
+            <span class="span5">Tài xế: @dtTransit.Rows[0]["Driver"]</span>
+        </div>
+    </div>
+</div>
+<div class="row" style="text-align:center">
+    <strong style="font-size: 21px;">DANH SÁCH TRUNG CHUYỂN</strong>
+    <br />
+    <strong>Chuyển ngày</strong>
+</div>
+<div class="row" style="width:98%;">
+    <table class="responstable">
+        <tr>
+            <th style="width:5%;">STT</th>
+            <th style="width:30%;"><span>Địa chỉ đón</span></th>
+            <th style="width:15%;">Tên khách hàng</th>
+            <th style="width:15%;">Số điện thoại</th>
+            <th style="width:10%;">Số ghế</th>
+            <th style="width:30%;">Ghi chú</th>
+        </tr>
+        @foreach (DataRow row in dtTransit.Rows)
+        {
+
+            <tr>
+                <th>@row["OrderTransit"]</th>
+                <th data-th="Driver details" style="font-size: 18px;"><span>@row["Address"]</span></th>
+                <th style="font-size: 26px;">@row["PassengerName"]</th>
+                <th style="font-size: 26px;">@row["Mobile"]</th>
+                <th style="font-size: 26px;">@row["Descriptions"]</th>
+                <th style="font-size: 18px;">@row["Note"]</th>
+            </tr>
+
+        }
+    </table>
+</div>
+<style>
+    .row {
+        width: 98% !important;
+    }
+</style>
