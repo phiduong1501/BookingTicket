@@ -3,7 +3,7 @@
         function ($scope, $filter, LeftSectionFactory, CommonFactory, $location, $rootScope) {
             $scope.controls = {
             };
-            debugger;
+            
 
             $scope.Init = function () {
                 if ($rootScope.first ) {
@@ -35,7 +35,7 @@
 
                 $scope.GetRouteAll();
                 //tanhk
-                //debugger;
+                //
                 //$scope.controls.cbRoute.dataSource.data($rootScope.routes);
                 $rootScope.GetTimeGoOfDateGo();
                 
@@ -45,7 +45,7 @@
                 LeftSectionFactory.GetRouteAll(function (response) {
                     //$scope.routes = response;
                     //$scope.controls.cbRoute.dataSource.data($scope.routes);
-                    //debugger;
+                    //
                     
                     $rootScope.routes = response;
                     $scope.routes = $rootScope.routes;
@@ -98,9 +98,9 @@
                 $rootScope.first = true;
                 $rootScope.GetTimeGoOfDateGo();
             }
-            //debugger;
+            //
             $scope.onSelected = function () {
-                debugger;
+                
                 var select = $scope.controls.lvTime.select();
                 $scope.model = $scope.controls.lvTime.dataSource.view()[select.index()];
                 $rootScope.CarDateGoID = $scope.model.CarDateGoID;

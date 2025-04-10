@@ -43,7 +43,7 @@
                 var result = confirm("Bạn muốn đăng ký máy tính này ?");
                 if (result) {
                     AccountFactory.ComputerRegistry( function (respo) {
-                        debugger;
+                        
                         if (respo && respo.Success == 1) {
                             //$rootScope.GetTimeGoOfDateGo();
                             CommonFactory.logSuccess('Đăng ký thành công');
@@ -89,7 +89,7 @@
             $scope.searchOnChange = function () {
                 var item = $scope.controls.cbSearch.dataItem();
                 $rootScope.searchID = item.CarDateGoDetailID;
-                debugger;
+                
                 $location.url('booking/' + item.CarDateGoID + '/' + item.StationFromID);
                 var a = item.GoDate.split('/');
                 $rootScope.endDate = new Date(a[2], a[1] - 1, a[0]);
@@ -105,7 +105,7 @@
             function keyDownTextField(e) {
                 var keyCode = e.keyCode;
                 if (keyCode == 27) {
-                    debugger;
+                    
                     if ($rootScope.isMoving) {
                         $timeout(function () {
                             $rootScope.isMoving = !$rootScope.isMoving;

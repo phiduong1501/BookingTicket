@@ -238,7 +238,7 @@ propsFilter.$inject = [];
 //    var formats = $locale.NUMBER_FORMATS;
 
 //    return function (amount, currencySymbol, decimalPlaces, isRoundDown) {
-//        debugger;
+//        
 //        if (currencySymbol) {
 //            currencySymbol = formats.CURRENCY_SYM;
 //        }

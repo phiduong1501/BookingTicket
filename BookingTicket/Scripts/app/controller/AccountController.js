@@ -101,7 +101,7 @@
             }
 
             $scope.UpdateUser = function () {
-                debugger
+                
                 var model = $scope.model;
 
                 if ($scope.Password)
@@ -125,7 +125,7 @@
             }
 
             $scope.DeleteUser = function (model) {
-                debugger
+                
                 AccountFactory.DeleteUser(model, function (response) {
                     if (response.Success) {
                         $scope.GetAllUser();
@@ -154,10 +154,10 @@
                 }
                 $scope.isLoading = true;
                 AccountFactory.Login($rootScope.currentUser.UserName, $scope.OldPassword, function (response) {
-                    debugger;
+                    
                     if (response.Result == 1) {
                         AccountFactory.ChangePassword($rootScope.currentUser.UserName, $scope.NewPassword, function (response) {
-                            debugger;
+                            
                             if (response == 1) {
                                 alert('Đổi mật khẩu thành công.');
                                 window.location.href = '/';
@@ -180,7 +180,7 @@
             }
 
             $scope.Register = function () {
-                debugger
+                
                 try {
                     if ($scope.Password == "" || $scope.Password == undefined) {
                         CommonFactory.logError('Chưa nhập mật khẩu');

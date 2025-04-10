@@ -84,7 +84,7 @@
             }
 
             $scope.UpdateRoute = function () {
-                debugger
+
                 var model = $scope.model;
 
                 ManagementRouteFactory.UpdateRoute(model, function (response) {

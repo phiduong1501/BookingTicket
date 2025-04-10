@@ -190,32 +190,6 @@ namespace BookingTicket.Controllers
             }
         }
 
-        public ActionResult RegisterCompany(string strUserName, string strPassword, string strCompanyName, string strPhone, string strAddress,string strContactName, string strContactPhone)
-        {
-            try
-            {
-                SysUserBO objUser = new SysUserBO();
-                objUser.UserName = strUserName;
-                objUser.FullName = strContactName;
-                objUser.Password = Utils.Utils.GetMD5(strPassword);
-                objUser.IsAllowBooking = true;
-                objUser.IsAllowManager = true;
-                objUser.IsAllowRouter = true;
-                AccountRepository.Current.Insert(objUser);
-                SysCompanyBO objCompany = new SysCompanyBO();
-                objCompany.Address = strAddress;
-                objCompany.CompanyName = strCompanyName;
-                objCompany.ContactName = strContactName;
-                objCompany.ContactPhone = strContactPhone;
-                objCompany.Phone = strPhone;
-                objCompany.CreatedUser = strUserName;
-                SysCompanyRepository.Current.Insert(objCompany);
-                return Json(new { Success = true });
-            }
-            catch (Exception ex)
-            {
-                return Json(new { Success = false, Message = ex.Message });
-            }
-        }
+       
     }
 }

@@ -74,7 +74,7 @@
 
             $scope.DeletePickup = function (item) {
                 if (confirm('Bạn muốn xóa điểm này?')) {
-                    debugger
+                    
                     ManagementPickupFactory.DeletePickup(item, function (response) {
                         if (response.Success) {
                             $scope.GetAllPickupAddress();

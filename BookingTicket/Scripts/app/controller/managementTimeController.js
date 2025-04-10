@@ -48,7 +48,6 @@
             }
 
             $scope.UpdateTime = function () {
-                debugger
                 var model = $scope.model;
 
                 ManagementTimeFactory.UpdateTime(model, function (response) {

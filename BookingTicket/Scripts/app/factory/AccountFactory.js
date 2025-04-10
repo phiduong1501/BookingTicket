@@ -113,7 +113,7 @@
         }
 
         service.ComputerRegistry = function (callback) {
-            debugger;
+            
             var datasend = JSON.stringify({
             });
 

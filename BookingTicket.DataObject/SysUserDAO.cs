@@ -23,17 +23,16 @@ namespace BookingTicket.DataObject
             try
             {
                 objData.Connect();
-                objData.CreateNewStoredProcedure("Sys_User_Insert");
-               
+                objData.CreateNewStoredProcedure("Sys_User_Insert");               
                 objData.AddParameter("@UserName", objBO.UserName);
                 objData.AddParameter("@Password", objBO.Password);
                 objData.AddParameter("@FullName", objBO.FullName);
-                objData.AddParameter("@CreatedUser", objBO.CreatedUser);
+                objData.AddParameter("@CompanyID", objBO.CompanyID);
                 objData.AddParameter("@StationID", objBO.StationID);
-                objData.AddParameter("@RouteID", objBO.RouteID);
                 objData.AddParameter("@IsAllowBooking", objBO.IsAllowBooking);
                 objData.AddParameter("@IsAllowManager", objBO.IsAllowManager);
                 objData.AddParameter("@IsAllowRouter", objBO.IsAllowRouter);
+                objData.AddParameter("@CreatedUser", objBO.CreatedUser);
                 objTemp = objData.ExecStoreToString();
             }
             catch (Exception objEx)

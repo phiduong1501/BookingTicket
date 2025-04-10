@@ -14,7 +14,7 @@
             }
 
             $scope.BookTicketViewList = function () {
-                debugger;
+                
                 $location.url('booking/' + $scope.intDateGoID + '/' + $scope.stationFromID);
             }
 
@@ -50,7 +50,7 @@
             }
 
             $scope.InsertCarDateGo = function () {
-                debugger;
+                
                 //CommonFactory.logError('Chưa chọn giờ');
 
                 if (!$scope.car.GoTime) {
@@ -127,7 +127,7 @@
 
         // Cập nhật số xe - tài xế
             $scope.openWndCarDateGoUpdate = function () {
-                debugger;
+                
                 $scope.model = {};
                 $scope.car = {};
 
@@ -136,7 +136,7 @@
                 BookingFactory.GetCarByID($rootScope.CarDateGoID, function (response) {
                     if (response.Success) {
                         $timeout(function () {
-                            debugger;
+                            
                             $scope.CarModel = JSON.parse(response.Result)[0];
                             $scope.car.DriverUpdate = $scope.CarModel.Driver;
                             $scope.car.CarNumberUpdate = $scope.CarModel.CarNumber;
@@ -154,12 +154,12 @@
             }
 
             $scope.UpdateCarDateGo = function () {
-                debugger;
+                
                 if (!$scope.car) {
                     alert("Không xác định được xe")
                     return;
                 }
-                debugger;
+                
                 ManagementCarFactory.UpdateCarDateGo($rootScope.CarDateGoID, 'NoChange', $scope.car.DriverUpdate, $scope.car.CarNumberUpdate, $scope.car.IsTransship, $scope.car.IsNewBus, function (resp) {
                     if (resp && resp.Result == 1) {
                         $route.reload();

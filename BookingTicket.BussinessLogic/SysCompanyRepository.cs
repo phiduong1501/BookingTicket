@@ -26,18 +26,18 @@ namespace BookingTicket.BussinessLogic
 
 
         #region Method
-        public DataTable GetAll(int intPageOff, int intPageSize)
+        public DataTable GetAll()
         {
             try
             {
-                return objCompany.GetAll(intPageOff, intPageSize);
+                return objCompany.GetAll();
             }
             catch (Exception objEx)
             {
                 throw objEx;
             }
         }
-        public object Insert(SysCompanyBO objBO)
+        public string Insert(SysCompanyBO objBO)
         {
             try
             {

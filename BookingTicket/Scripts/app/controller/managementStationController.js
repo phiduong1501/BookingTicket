@@ -55,7 +55,6 @@
             }
 
             $scope.UpdateStation = function () {
-                debugger
                 var model = $scope.model;
 
                 ManagementStationFactory.UpdateStation(model, function (response) {

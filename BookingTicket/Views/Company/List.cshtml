@@ -22,7 +22,6 @@
                             <th>SĐT</th>
                             <th>Tên người liên hệ</th>
                             <th>SĐT người liên hệ</th>
-                            <th>Tình trạng</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -32,18 +31,13 @@
                             <td>{{company.Address}}</td>
                             <td>{{company.Phone}}</td>
                             <td>
-                                {{company.ContactName}}
+                                {{company.ContactPerson}}
                             </td>
                             <td>
                                 {{company.ContactPhone}}
                             </td>
                             <td>
-                                <span ng-if="company.Status==0">Chưa duyệt</span>
-                                <span ng-if="company.Status==1">Đã duyệt</span>
-                                <span ng-if="company.Status==2">Không duyệt</span>
-                            </td>
-                            <td>
-                                <kendo-button class="k-success k-button k-button-icontext" ng-click="ApproveCompany(company)">Duyệt</kendo-button>
+                                @*<kendo-button class="k-success k-button k-button-icontext" ng-click="ApproveCompany(company)">Duyệt</kendo-button>*@
                                 <kendo-button class="k-success k-button k-button-icontext" ng-click="openWndAccount(company)">Sửa</kendo-button>
                                 <kendo-button class="k-danger k-button k-button-icontext" ng-click="DeleteCompany(company)">Xóa</kendo-button>
                             </td>
@@ -51,8 +45,7 @@
                     </tbody>
                 </table>
             </div>
-
-            <div kendo-window="controls.wndAccount" k-title="'Cập nhật'" k-modal="true" k-width="750" k-heigh="500" k-visible="false">
+            <div kendo-window="controls.wndAccount" k-title="'Thêm mới'" k-modal="true" k-width="750" k-heigh="500" k-visible="false">
                 <div class="col-xs-12">
                     <div class="col-xs-12 item-seat">
                         <div class="col-xs-5">
@@ -83,7 +76,7 @@
                             <label class="item-label">Tên người liên hệ</label>
                         </div>
                         <div class="col-xs-7">
-                            <input class="k-textbox" type="text" ng-model="model.ContactName" placeholder="Tên người liên hệ" />
+                            <input class="k-textbox" type="text" ng-model="model.ContactPerson" placeholder="Tên người liên hệ" />
                         </div>
                     </div>
                     <div class="col-xs-12 item-seat">
@@ -94,10 +87,26 @@
                             <input class="k-textbox" type="text" ng-model="model.ContactPhone" placeholder="SĐT liên hệ" />
                         </div>
                     </div>
-                    
+                    <div class="col-xs-12 item-seat" ng-show="model.IsCreate">
+                        <div class="col-xs-5">
+                            <label class="item-label">Tài khoản quản lý:</label>
+                        </div>
+                        <div class="col-xs-7">
+                            <input class="k-textbox" type="text" ng-model="model.UserName" placeholder="Tài khoản quản lý" />
+                        </div>
+                    </div>
+                    <div class="col-xs-12 item-seat" ng-show="model.IsCreate">
+                        <div class="col-xs-5">
+                            <label class="item-label">Mật khẩu:</label>
+                        </div>
+                        <div class="col-xs-7">
+                            <input class="k-textbox" type="text" ng-model="model.Password" placeholder="Mật khẩu" />
+                        </div>
+                    </div>
                     <hr />
                     <div class="col-xs-12 text-right">
-                        <kendo-button class="k-primary k-button k-button-icontext" ng-click="Submit()">Cập nhật</kendo-button>
+                        <kendo-button class="k-primary k-button k-button-icontext" ng-click="Submit_Create()" ng-show="model.IsCreate">Tạo</kendo-button>
+                        <kendo-button class="k-primary k-button k-button-icontext" ng-click="Submit_Update()" ng-show="!model.IsCreate">Cập nhật</kendo-button>
                         <kendo-button class="k-button k-button-icontext" ng-click="controls.wndAccount.close()">Đóng</kendo-button>
                     </div>
                 </div>

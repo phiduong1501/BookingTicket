@@ -43,7 +43,7 @@
                     ReasonDeleteID: 4
                 }
             ];
-            debugger;
+            
 
             $scope.intDateGoID = $routeParams.intDateGoID;
             $scope.stationFromID = $routeParams.stationFromID;
@@ -437,7 +437,7 @@
 
             $rootScope.isSeachByMobile = true;
             $scope.onSelected = function () {
-                debugger;
+                
 
                 if ($scope.notRunEvent)
                     return;
@@ -522,7 +522,7 @@
                     }
                 }
 
-                //debugger;
+                //
 
                 if ($rootScope.action == 1)//booking
                 {
@@ -581,7 +581,7 @@
             }
 
             $scope.moving = function (id) {
-                //debugger;
+                //
                 //if (!$rootScope.itemMove || $rootScope.itemMove.length == 0) {
                 //    CommonFactory.logWarning('Chọn 1 ghế trước khi đổi ghế.');
                 //    return;
@@ -611,7 +611,7 @@
 
             $scope.GetLogByDateGoDetailID = function () {
                 BookingFactory.GetLogByDateGoDetailID($scope.model.CarDateGoDetailID, function (response) {
-                    //debugger;
+                    //
                     $timeout(function () {
                         $scope.logs = response.Result;
                         $scope.$apply();
@@ -631,7 +631,7 @@
             }
 
             $scope.openWndUpdate = function (id) {
-                //debugger;
+                //
                 if ($rootScope.isMoving) {
                     CommonFactory.logWarning('Bạn đang trong trạng thái di chuyển ghế. Không thể thực hiện chức năng khác.');
                     return;
@@ -734,7 +734,7 @@
                 //var isPass = false;
                 //var tempPhone;
 
-                //debugger;
+                //
                 //for (var i = 0; i < $scope.selecteds.length; i++) {
                 //    if ($scope.selecteds[i].SeatStatusID == 2) {
                 //        count++;
@@ -763,7 +763,7 @@
 
             $scope.update = function () {
                 BookingFactory.Update($scope.model, function (response) {
-                    debugger;
+                    
                     if (response.Success) {
                         $scope.model = {};
                         $scope.GetAllSeatOfTimeGo();
@@ -795,7 +795,7 @@
                     return;
                 }
 
-                debugger;
+                
                 //$scope.lastID = $scope.model.ListID;
                 //tanhk
                 if ($scope.model.PaymentStatusID == 1) {

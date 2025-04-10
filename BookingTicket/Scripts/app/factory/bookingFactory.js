@@ -204,7 +204,7 @@
 
         factory.Update = function (model, callback) {
             var datasend = JSON.stringify(model);
-            debugger;
+            
             CommonFactory.PostDataAjax("/Ticket/Update", datasend,
                 function (err) {
 
@@ -220,7 +220,7 @@
         }
 
         factory.UpdateSeatsCancel = function (model, strCarDateGoDetailID, callback) {
-            debugger;
+            
             var datasend = JSON.stringify({
                 model:model,
                 strCarDateGoDetailID: strCarDateGoDetailID

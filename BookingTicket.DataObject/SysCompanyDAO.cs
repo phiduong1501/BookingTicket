@@ -16,20 +16,20 @@ namespace BookingTicket.DataObject
         /// Insert : Sys_Company
         /// Them moi du lieu
         ///</summary>
-        public object Insert(SysCompanyBO objBO)
+        public string Insert(SysCompanyBO objBO)
         {
             IData objData = Data.CreateData();
-            object objTemp = null;
+            string objTemp = string.Empty;
             try
             {
                 objData.Connect();
-                objData.CreateNewStoredProcedure("Sys_Company_Insert");
-               
+                objData.CreateNewStoredProcedure("Sys_Company_Insert");               
                 objData.AddParameter("@CompanyName", objBO.CompanyName);
                 objData.AddParameter("@Address", objBO.Address);
                 objData.AddParameter("@Phone", objBO.Phone);
-                objData.AddParameter("@ContactName", objBO.ContactName);
+                objData.AddParameter("@ContactPerson", objBO.ContactPerson);
                 objData.AddParameter("@ContactPhone", objBO.ContactPhone);
+                objData.AddParameter("@UserAdmin", objBO.UserAdmin);
                 objData.AddParameter("@CreatedUser", objBO.CreatedUser);
                 objTemp = objData.ExecStoreToString();
             }
@@ -58,12 +58,11 @@ namespace BookingTicket.DataObject
             {
                 objData.Connect();
                 objData.CreateNewStoredProcedure("Sys_Company_Update");
-                if (objBO.CompanyID != int.MinValue) objData.AddParameter("@CompanyID", objBO.CompanyID);
-                else objData.AddParameter("@CompanyID", DBNull.Value);
+                objData.AddParameter("@CompanyID", objBO.CompanyID);
                 objData.AddParameter("@CompanyName", objBO.CompanyName);
                 objData.AddParameter("@Address", objBO.Address);
                 objData.AddParameter("@Phone", objBO.Phone);
-                objData.AddParameter("@ContactName", objBO.ContactName);
+                objData.AddParameter("@ContactPerson", objBO.ContactPerson);
                 objData.AddParameter("@ContactPhone", objBO.ContactPhone);
                 objData.AddParameter("@UpdatedUser", objBO.UpdatedUser);
 
@@ -138,15 +137,13 @@ namespace BookingTicket.DataObject
         /// Get all : Sys_Company
         ///
         ///</summary>
-        public DataTable GetAll(int PageOff, int PageSize)
+        public DataTable GetAll()
         {
             IData objData = Data.CreateData();
             try
             {
                 objData.Connect();
                 objData.CreateNewStoredProcedure("Sys_Company_SelectAll");
-                objData.AddParameter("@PageOff", PageOff);
-                objData.AddParameter("@PageSize", PageSize);
                 return objData.ExecStoreToDataTable();
             }
             catch (Exception objEx)
