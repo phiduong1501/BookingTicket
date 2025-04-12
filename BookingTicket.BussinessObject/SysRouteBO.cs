@@ -197,4 +197,19 @@ namespace BookingTicket.BussinessObject
         }
         #endregion
     }
+    public class Sys_VehicleTypeBO
+    {
+        public int VehicleTypeID { get; set; }
+        public string VehicleTypeName { get; set; }
+        public int NumberOfSeat { get; set; }
+        public string Note { get; set; }
+        public int CompanyID { get; set; }
+        public bool IsDeleted { get; set; }
+        public string DeletedUser { get; set; }
+        public DateTime DeletedDate { get; set; }
+        public string UpdatedUser { get; set; }
+        public DateTime UpdatedDate { get; set; }
+        public string CreatedUser { get; set; }
+        public DateTime CreatedDate { get; set; }
+    }
 }

@@ -67,7 +67,6 @@ namespace BookingTicket.DataObject
                 objData.AddParameter("@FullName", objBO.FullName);
                 objData.AddParameter("@UpdatedUser", objBO.UpdatedUser);
                 objData.AddParameter("@StationID", objBO.StationID);
-                objData.AddParameter("@RouteID", objBO.RouteID);
                 objData.AddParameter("@IsAllowBooking", objBO.IsAllowBooking);
                 objData.AddParameter("@IsAllowManager", objBO.IsAllowManager);
                 objData.AddParameter("@IsAllowRouter", objBO.IsAllowRouter);

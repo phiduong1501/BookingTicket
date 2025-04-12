@@ -93,7 +93,7 @@
                     $scope.GetTimeAll();
                     $rootScope.GetTimeAll_count = 1;
                 }
-                $scope.SelectLoaiXe();
+                //$scope.SelectLoaiXe();
 
             }
 
@@ -113,17 +113,17 @@
                 });
         }
 
-        $scope.SelectLoaiXe = function () {
-            ManagementCarFactory.SelectLoaiXe(function (response) {
-                if (response) {
-                    $scope.LoaiXe = JSON.parse(response);
-                    $scope.$apply();
-                } else {
-                    CommonFactory.logError('Lấy thông tin loại xe không thành công: ' + resp.Message);
-                }
-            });
+        //$scope.SelectLoaiXe = function () {
+        //    ManagementCarFactory.SelectLoaiXe(function (response) {
+        //        if (response) {
+        //            $scope.LoaiXe = JSON.parse(response);
+        //            $scope.$apply();
+        //        } else {
+        //            CommonFactory.logError('Lấy thông tin loại xe không thành công: ' + resp.Message);
+        //        }
+        //    });
 
-        }
+        //}
 
         // Cập nhật số xe - tài xế
             $scope.openWndCarDateGoUpdate = function () {

@@ -261,6 +261,7 @@
     <Content Include="Scripts\app\controller\AccountController.js" />
     <Content Include="Scripts\app\controller\appController.js" />
     <Content Include="Scripts\app\controller\actionTicketController.js" />
+    <Content Include="Scripts\app\controller\ManagementVehicleTypeController.js" />
     <Content Include="Scripts\app\controller\managementRouteController.js" />
     <Content Include="Scripts\app\controller\managementTimeController.js" />
     <Content Include="Scripts\app\controller\managementStationController.js" />
@@ -556,6 +557,7 @@
     <Content Include="Views\Ticket\ManagementTime.cshtml" />
     <Content Include="Views\Ticket\ManagementRoute.cshtml" />
     <Content Include="Views\Ticket\PrinterTicket.cshtml" />
+    <Content Include="Views\Ticket\ManagementVehicleType.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -430,23 +430,23 @@ namespace BookingTicket.BussinessLogic
                 throw objEx;
             }
         }
-        /// <summary>
-        /// Lấy tất cả loại xe(xe mấy chổ) đã khai báo
-        /// </summary>
-        /// <returns></returns>
-        public DataTable SelectLoaiXe()
-        {
-            try
-            {
-                return objLoaiXe.GetAll();
-            }
-            catch (Exception)
-            {
+        ///// <summary>
+        ///// Lấy tất cả loại xe(xe mấy chổ) đã khai báo
+        ///// </summary>
+        ///// <returns></returns>
+        //public DataTable SelectLoaiXe()
+        //{
+        //    try
+        //    {
+        //        return objLoaiXe.GetAll();
+        //    }
+        //    catch (Exception)
+        //    {
 
-                throw;
-            }
-        } 
-            #endregion
+        //        throw;
+        //    }
+        //}
+        #endregion
     }
 
 }

@@ -255,6 +255,13 @@ namespace BookingTicket.Controllers
                 return Redirect("/dang-nhap");
             return View();
         }
+        public ActionResult ManagementVehicleType()
+        {
+            var objUser = SysUserModels.Current.CurrentUser();
+            if (objUser == null || objUser.UserName == null)
+                return Redirect("/dang-nhap");
+            return View();
+        }
 
         public JsonResult GetAllStation(int intSortDesc)
         {
@@ -839,22 +846,22 @@ namespace BookingTicket.Controllers
             }
         }
 
-        public JsonResult SelectLoaiXe()
-        {
-            try
-            {
-                var user = SysUserModels.Current.CurrentUser();
-                if (user == null)
-                    return Json(new { Success = false, Message = "Vui lòng đăng nhập lại" });
+        //public JsonResult SelectLoaiXe()
+        //{
+        //    try
+        //    {
+        //        var user = SysUserModels.Current.CurrentUser();
+        //        if (user == null)
+        //            return Json(new { Success = false, Message = "Vui lòng đăng nhập lại" });
 
-                var result = CarRepository.Current.SelectLoaiXe();
-                return Json(Utils.Utils.ConvertDataTableTojSonString(result), JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception obj)
-            {
-                return Json(new { Success = false, Message = obj.Message });
-            }
-        }
+        //        var result = CarRepository.Current.SelectLoaiXe();
+        //        return Json(Utils.Utils.ConvertDataTableTojSonString(result), JsonRequestBehavior.AllowGet);
+        //    }
+        //    catch (Exception obj)
+        //    {
+        //        return Json(new { Success = false, Message = obj.Message });
+        //    }
+        //}
         #region station
         public JsonResult DeleteStation(SysStationBO objStation)
         {
@@ -1003,6 +1010,74 @@ namespace BookingTicket.Controllers
                     return Json(new { Success = false, Message = "Vui lòng đăng nhập lại" });
                 objRoute.CreatedUser = user.UserName;
                 var result = SysRouteRepository.Current.Insert(objRoute);
+                return Json(new { Success = true, Result = result });
+            }
+            catch (Exception obj)
+            {
+                return Json(new { Success = false, Message = obj.Message });
+            }
+        }
+        #endregion
+
+        #region Vehicle Type
+        public JsonResult VehicleType_Insert(Sys_VehicleTypeBO Model)
+        {
+            try
+            {
+                var user = SysUserModels.Current.CurrentUser();
+                if (user == null)
+                    return Json(new { Success = false, Message = "Vui lòng đăng nhập lại" });
+                Model.CreatedUser = user.UserName;
+                Model.CompanyID = user.CompanyID;
+                var result = SysVehicleTypeRepository.Current.Insert(Model);
+                return Json(new { Success = true, Result = result });
+            }
+            catch (Exception obj)
+            {
+                return Json(new { Success = false, Message = obj.Message });
+            }
+        }    
+        public JsonResult VehicleType_GetAll()
+        {
+            try
+            {
+                var user = SysUserModels.Current.CurrentUser();
+                if (user == null)
+                    return Json(new { Success = false, Message = "Vui lòng đăng nhập lại" });
+                var result = SysVehicleTypeRepository.Current.VehicleType_GetAll(user.CompanyID);
+                return Json(new { Success = true, Result = Utils.Utils.ConvertDataTableTojSonString(result) });
+            }
+            catch (Exception obj)
+            {
+                return Json(new { Success = false, Message = obj.Message });
+            }
+        }
+        public JsonResult VehicleType_Update(Sys_VehicleTypeBO Model)
+        {
+            try
+            {
+                var user = SysUserModels.Current.CurrentUser();
+                if (user == null)
+                    return Json(new { Success = false, Message = "Vui lòng đăng nhập lại" });
+                Model.UpdatedUser = user.UserName;
+                var result = SysVehicleTypeRepository.Current.Update(Model);
+                return Json(new { Success = true, Result = result });
+            }
+            catch (Exception obj)
+            {
+                return Json(new { Success = false, Message = obj.Message });
+            }
+        }
+
+        public JsonResult VehicleType_Delete(Sys_VehicleTypeBO Model)
+        {
+            try
+            {
+                var user = SysUserModels.Current.CurrentUser();
+                if (user == null)
+                    return Json(new { Success = false, Message = "Vui lòng đăng nhập lại" });
+                Model.DeletedUser = user.UserName;
+                var result = SysVehicleTypeRepository.Current.Delete(Model);
                 return Json(new { Success = true, Result = result });
             }
             catch (Exception obj)

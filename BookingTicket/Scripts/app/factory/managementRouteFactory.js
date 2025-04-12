@@ -1,8 +1,27 @@
 ﻿(function () {
 
-    app.factory('ManagementRouteFactory', ['$http', 'CommonFactory', function ($http, CommonFactory) {
+    app.factory('ManagementRouteFactory', ['$http', 'CommonFactory', '$timeout', function ($http, CommonFactory, $timeout) {
         var service = {};
-        
+        var URL = "/Ticket/";
+        service.CallServer = function (funtionname, param, callback) {
+            var dataSend = JSON.stringify(param);
+            CommonFactory.PostDataAjax(URL + funtionname, dataSend,
+                function () { },
+                function (response) {
+                    $timeout(function () {
+                        if (response != "error") {
+                            callback(response);
+                        } else {
+                            callback(null);
+                        }
+                    }, 10);
+                },
+                function () {
+                    $timeout(function () {
+                        callback(null);
+                    }, 10);
+                });
+        };
         service.GetAll = function (callback) {
             var datasend = JSON.stringify({
             });

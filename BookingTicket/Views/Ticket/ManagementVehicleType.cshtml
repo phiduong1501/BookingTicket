@@ -1,0 +1,90 @@
+﻿@Html.Partial("_Header")
+@using BookingTicket.Models
+@{
+    var objUser = SysUserModels.Current.CurrentUser();
+}
+<div id="page-wrapper" ng-controller="ManagementVehicleTypeController" ng-init="Init()">
+    @if (objUser.IsAllowManager)
+    {
+        <div class="col-xs-12 left-section">
+            <div class="alert alert-warning">
+                <div class="col-xs-12 item-seat text-right">
+                    <kendo-button class="k-primary k-button k-button-icontext" ng-click="openWndAccount()">Thêm</kendo-button>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr class="table-header">
+                            <th>Tên loại xe</th>
+                            <th>Số chổ ngồi</th>
+                            <th>Ghi chú</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="vehicle in lstVehicleType">
+                            <td>{{vehicle.VehicleTypeName}}</td>
+                            <td>{{vehicle.NumberOfSeat}}</td>
+                            <td>{{vehicle.Note}}</td>
+                            <td>
+                                <kendo-button class="k-success k-button k-button-icontext" ng-click="openWndAccount(vehicle)">Sửa</kendo-button>
+                                <kendo-button class="k-danger k-button k-button-icontext" ng-click="DeleteRoute(vehicle)">Xóa</kendo-button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div kendo-window="controls.wndAccount" k-title="'Cập nhật'" k-modal="true" k-width="750" k-heigh="500" k-visible="false">
+                <div class="col-xs-12">
+                    <div class="col-xs-12 item-seat">
+                        <div class="col-xs-5">
+                            <label class="item-label">Tên loại xe:</label>
+                        </div>
+                        <div class="col-xs-7">
+                            <input class="k-textbox" type="text" ng-model="model.VehicleTypeName" placeholder="Tên loại xe" />
+                        </div>
+                    </div>
+                    <div class="col-xs-12 item-seat">
+                        <div class="col-xs-5">
+                            <label class="item-label">Số chổ ngồi:</label>
+                        </div>
+                        <div class="col-xs-7">
+                            <input class="k-textbox" type="number" ng-model="model.NumberOfSeat" placeholder="Số chổ ngồi" />
+                        </div>
+                    </div>
+                    <div class="col-xs-12 item-seat">
+                        <div class="col-xs-5">
+                            <label class="item-label">Ghi chú:</label>
+                        </div>
+                        <div class="col-xs-7">
+                            <input class="k-textbox" type="text" ng-model="model.Note" placeholder="Ghi chú" />
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="col-xs-12 text-right">
+                        <kendo-button class="k-primary k-button k-button-icontext" ng-click="Submit()">Cập nhật</kendo-button>
+                        <kendo-button class="k-button k-button-icontext" ng-click="controls.wndAccount.close()">Đóng</kendo-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="col-xs-12 left-section">
+            <strong>Bạn không có quyền truy cập</strong>
+        </div>
+    }
+</div>
+
+<style>
+    .nav.navbar-nav.side-nav {
+        display: none;
+    }
+
+    #wrapper {
+        padding-left: 0;
+    }
+</style>

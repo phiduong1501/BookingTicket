@@ -12,7 +12,7 @@
             $scope.Init = function () {
                 $scope.GetRouteAll();
                 $scope.GetTimeAll();
-                $scope.SelectLoaiXe();
+                //$scope.SelectLoaiXe();
                 //$scope.GetTimeGoOfDateGo();
             }
 
@@ -160,17 +160,17 @@
             }
 
 
-            $scope.SelectLoaiXe = function () {
-                ManagementCarFactory.SelectLoaiXe(function (response) {
-                    if (response) {
-                        $scope.LoaiXe = JSON.parse(response);
-                        $scope.$apply();
-                    } else {
-                        CommonFactory.logError('Lấy thông tin loại xe không thành công: ' + resp.Message);
-                    }
-                });
+            //$scope.SelectLoaiXe = function () {
+            //    ManagementCarFactory.SelectLoaiXe(function (response) {
+            //        if (response) {
+            //            $scope.LoaiXe = JSON.parse(response);
+            //            $scope.$apply();
+            //        } else {
+            //            CommonFactory.logError('Lấy thông tin loại xe không thành công: ' + resp.Message);
+            //        }
+            //    });
 
-            }
+            //}
 
         }])
 

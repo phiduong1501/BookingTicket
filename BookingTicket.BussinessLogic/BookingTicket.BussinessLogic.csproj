@@ -53,6 +53,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="SysPickupAdressReposoitory.cs" />
+    <Compile Include="SysVehicleTypeRepository.cs" />
     <Compile Include="SysRouteRepository.cs" />
     <Compile Include="SysCompanyRepository.cs" />
     <Compile Include="SysStationRepository.cs" />

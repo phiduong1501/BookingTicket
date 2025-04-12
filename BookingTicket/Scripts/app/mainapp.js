@@ -30,6 +30,9 @@ app.config(function ($routeProvider) {
         .when("/managementroute", {
             templateUrl: "Ticket/ManagementRoute"
         })
+        .when("/managementvehicletype", {
+            templateUrl: "Ticket/ManagementVehicleType"
+        })
         .when("/managementpickup", {
             templateUrl: "Ticket/ManagementPickup"
         })

@@ -38,6 +38,9 @@
             $scope.ManagementRouteRedirect = function () {
                 $location.url('managementroute');
             }
+            $scope.ManagementVehicleTypeRedirect = function () {
+                $location.url('managementvehicletype');
+            }
 
             $scope.ComputerRegistry = function () {
                 var result = confirm("Bạn muốn đăng ký máy tính này ?");

@@ -94,22 +94,22 @@
                 });
         }
 
-        service.SelectLoaiXe = function (callback) {
-            var datasend = JSON.stringify({
+        //service.SelectLoaiXe = function (callback) {
+        //    var datasend = JSON.stringify({
                 
-            });
+        //    });
 
-            CommonFactory.PostDataAjax("/Ticket/SelectLoaiXe", datasend,
-                function (err) {
-                },
-                function (response) {
-                    callback(response);
-                },
+        //    CommonFactory.PostDataAjax("/Ticket/SelectLoaiXe", datasend,
+        //        function (err) {
+        //        },
+        //        function (response) {
+        //            callback(response);
+        //        },
 
-                function (error) {
-                    callback(error);
-                });
-        }
+        //        function (error) {
+        //            callback(error);
+        //        });
+        //}
 
         return service;
     }])
