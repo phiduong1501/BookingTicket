@@ -1,8 +1,7 @@
-﻿@*@using BookingTicket.Models
-    @{
-        var objUser = SysUserModels.Current.CurrentUser();
-    }*@
-
+﻿@using BookingTicket.Models
+@{
+    var objUser = SysUserModels.Current.CurrentUser();
+}
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -12,35 +11,17 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#!/home">Nhà Xe Online</a>
+        <a class="navbar-brand" href="#!/">@objUser.CompanyName</a>
     </div>
     <!-- Top Menu Items -->
-
-    <div class="header-control" style="width:42%">
-        <select kendo-combo-box="controls.cbSearch"
-                k-placeholder="'Nhập vào số điện thoại'"
-                k-data-text-field="'TextData'"
-                k-data-value-field="'CarDateGoID'"
-                k-filter="'contains'"
-                k-auto-bind="false"
-                k-min-length="3"
-                k-on-change="searchOnChange()"
-                k-data-source="productsDataSource"
-                style="width: 100%"
-                ng-model="keywords"
-                k-template="itemTemplate"></select>
-    </div>
-
     <ul class="nav navbar-right top-nav">
         <li class="dropdown" style="cursor:pointer">
             <a class="dropdown-toggle" data-toggle="dropdown" ng-click="ManagementHomeRedirect()"> Đặt vé </a>
-            @*<ul class="dropdown-menu"></ul>*@
         </li>
 
         <li class="dropdown" style="cursor:pointer" ng-if="currentUser.IsAllowRouter">
             <a class="dropdown-toggle" data-toggle="dropdown" ng-click="ManagementCarRedirect()">Điều hành xe</a>
         </li>
-
         <li class="dropdown" style="cursor:pointer" ng-if="currentUser.IsAllowManager">
             <a class="dropdown-toggle" data-toggle="dropdown"> Quản lý<b class="caret"></b></a>
             <ul class="dropdown-menu">
@@ -73,16 +54,6 @@
         <li class="dropdown" style="cursor:pointer">
             <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{currentUser.FullName}} <b class="caret"></b></a>
             <ul class="dropdown-menu">
-                @*<li>
-                    <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
-                </li>
-                <li class="divider"></li>*@
                 <li>
                     <a href="#!/changepassword"><i class="fa fa-fw fa-power-off"></i> Đổi mật khẩu</a>
                 </li>
@@ -92,11 +63,6 @@
             </ul>
         </li>
     </ul>
-    <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-    <div class="collapse navbar-collapse navbar-ex1-collapse">
-        @Html.Partial("_LeftSection")
-    </div>
-    <!-- /.navbar-collapse -->
 </nav>
 
 <div kendo-window="controls.wndUpdate" k-title="'Thông tin'" k-modal="true" k-width="750" k-heigh="500" k-visible="false" k-on-close="onClose()">
@@ -155,7 +121,7 @@
 
                             <input kendo-drop-down-list="controls.ddlPayment" k-data-source="payments"
                                    k-data-text-field="'PaymentName'"
-                                   k-data-value-field="'PaymentID'" @*k-on-change="onPaymentChange()"*@ ng-model="model.PaymentStatusID" disabled />
+                                   k-data-value-field="'PaymentID'" ng-model="model.PaymentStatusID" disabled />
                         </div>
                     </div>
                     <div class="col-xs-12">

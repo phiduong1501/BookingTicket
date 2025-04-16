@@ -184,6 +184,7 @@ namespace BookingTicket.DataObject
                     if (!this.IsDBNull(reader["IsAllowManager"])) objUser.IsAllowManager = (bool)reader["IsAllowManager"];
                     if (!this.IsDBNull(reader["IsAllowRouter"])) objUser.IsAllowRouter = (bool)reader["IsAllowRouter"];
                     if (!this.IsDBNull(reader["CompanyID"])) objUser.CompanyID = (int)reader["CompanyID"];
+                    if (!this.IsDBNull(reader["CompanyName"])) objUser.CompanyName = (string)reader["CompanyName"];
 
                     objUser.Password = "";
                     bolOK = true;

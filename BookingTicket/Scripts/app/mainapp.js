@@ -4,7 +4,6 @@ app.config(function ($routeProvider) {
     $routeProvider
         .when("/", {
             templateUrl: "/Home/Home"
-            //controller: HomeController
         })
         .when("/booking/:intDateGoID/:stationFromID", {
             templateUrl: "/Ticket/Booking"
@@ -71,12 +70,10 @@ addFilter("timeFormatStoreRent", timeFormatStoreRent);
 addFilter("trustHtml", trustHtml);
 addFilter("timeFormat", timeFormat);
 addFilter("propsFilter", propsFilter);
-//addFilter("currency", currency);
 addFilter("tel", telFormat);
 addFilter("webstatus", webstatus);
 addFilter("shortenedName", shortenedName);
 addFilter("numberFormat", numberFormat);
 addFilter("numberSerialFormat", numberSerialFormat);
 addFilter("roundFloatNumber", roundFloatNumber);
-//addFilter("hiddenCharFirst", hiddenCharFirst);
 addFilter("upperText", upperText);

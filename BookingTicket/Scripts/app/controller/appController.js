@@ -9,16 +9,12 @@
             $scope.ManagementCarRedirect = function () {
                 $location.url('managementcar');
             }
-
             $scope.ManagementPickupRedirect = function () {
                 $location.url('managementpickup');
             }
-
-
             $scope.ManagementHomeRedirect = function () {
                 $location.url('booking/' + $rootScope.CarDateGoID + '/' + $rootScope.StationFromID);
             }
-
             $scope.ManagementAccountRedirect = function () {
                 $location.url('managementaccount');
             }
@@ -48,15 +44,12 @@
                     AccountFactory.ComputerRegistry( function (respo) {
                         
                         if (respo && respo.Success == 1) {
-                            //$rootScope.GetTimeGoOfDateGo();
                             CommonFactory.logSuccess('Đăng ký thành công');
                         }
                         else CommonFactory.logError('Đăng ký không thành công. ' + respo.Message);
                     });
-                    //$location.url('ComputerRegistry');
                 }
             }
-
             $scope.productsDataSource = {
                 type: "odata",
                 serverFiltering: true,
@@ -76,33 +69,28 @@
                         data: function (abc) {
                             if (abc.filter.filters[0]) {
                                 var a = abc.filter.filters[0].value;
-                                //return kendo.antiForgeryTokens();
                                 return { strKeyword: a }
                             }
                         }
                     }
                 }
             };
-
             $scope.viewInfo = function (item) {
                 $scope.model = item;
                 $scope.controls.wndUpdate.center().open();
             }
-
-            $scope.searchOnChange = function () {
-                var item = $scope.controls.cbSearch.dataItem();
-                $rootScope.searchID = item.CarDateGoDetailID;
-                
-                $location.url('booking/' + item.CarDateGoID + '/' + item.StationFromID);
-                var a = item.GoDate.split('/');
-                $rootScope.endDate = new Date(a[2], a[1] - 1, a[0]);
-                $rootScope.CarDateGoID = item.CarDateGoID;
-            }
+            //$scope.searchOnChange = function () {
+            //    var item = $scope.controls.cbSearch.dataItem();
+            //    $rootScope.searchID = item.CarDateGoDetailID;                
+            //    $location.url('booking/' + item.CarDateGoID + '/' + item.StationFromID);
+            //    var a = item.GoDate.split('/');
+            //    $rootScope.endDate = new Date(a[2], a[1] - 1, a[0]);
+            //    $rootScope.CarDateGoID = item.CarDateGoID;
+            //}
 
             $scope.onClose = function () {
                 $scope.controls.cbSearch.text('')
             }
-
             document.addEventListener("keydown", keyDownTextField, false);
             document.addEventListener("keyup", keyUpTextField, false);
             function keyDownTextField(e) {

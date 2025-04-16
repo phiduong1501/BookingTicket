@@ -7,7 +7,6 @@
 
             $scope.Init = function () {
                 if ($rootScope.first ) {
-                    //$rootScope.RouteID = $rootScope.currentUser.StationID == 1 ? 2 : 1;
                     if ($rootScope.currentUser.RouteID < 0) {
                         CommonFactory.logWarning('Cần khai báo tuyến để có thể đặt vé');
                     }
@@ -42,11 +41,7 @@
             }
 
             $scope.GetRouteAll = function () {
-                LeftSectionFactory.GetRouteAll(function (response) {
-                    //$scope.routes = response;
-                    //$scope.controls.cbRoute.dataSource.data($scope.routes);
-                    //
-                    
+                LeftSectionFactory.GetRouteAll(function (response) {                    
                     $rootScope.routes = response;
                     $scope.routes = $rootScope.routes;
                     $scope.controls.cbRoute.dataSource.data($rootScope.routes);
@@ -54,11 +49,13 @@
             }
 
             $scope.onChangeRoute = function () {
-                //var route = $scope.controls.cbRoute.dataItem();
-                //$rootScope.RouteID = route.RouteID;
-                //// Khong thay doi theo route. chi dua vao station cua user dang nhap
-                ////$rootScope.StationFromID = route.StationFromID;
+                var route = $scope.controls.cbRoute.dataItem();
+                $rootScope.RouteID = route.RouteID;
+                // Khong thay doi theo route. chi dua vao station cua user dang nhap
+                $rootScope.StationFromID = route.StationFromID;
                 //$rootScope.GetTimeGoOfDateGo();
+                $location.url('booking/' + $rootScope.CarDateGoID + '/' + $rootScope.StationFromID);
+
             }
 
             $rootScope.GetTimeGoOfDateGo = function () {
@@ -105,7 +102,8 @@
                 $scope.model = $scope.controls.lvTime.dataSource.view()[select.index()];
                 $rootScope.CarDateGoID = $scope.model.CarDateGoID;
                 $rootScope.GoTime = $scope.model.GoTime;
-                $location.url('booking/' + $rootScope.CarDateGoID + '/' + $rootScope.StationFromID);
+                //$location.url('booking/' + $rootScope.CarDateGoID + '/' + $rootScope.StationFromID);
+                $scope.onChangeRoute();
             }
 
         }])

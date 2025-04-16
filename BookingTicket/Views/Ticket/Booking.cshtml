@@ -3,8 +3,6 @@
 @{
     var objUser = SysUserModels.Current.CurrentUser();
 }
-
-
 <style>
     .seats-cancel {
         border: 1px solid;
@@ -19,11 +17,12 @@
 <div id="page-wrapper" ng-controller="BookingController" ng-init="Init()">
     @if (objUser.IsAllowBooking)
     {
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            @Html.Partial("_LeftSection")
+        </div>
         <div class="col-xs-12 left-section">
             @Html.Partial("_ActionTicket")
             @Html.Partial("_CarInfo")
-            @*<input ng-model="intDateGoID" style="display:none" />
-                <input ng-model="routeID" style="display:none" />*@
             <div kendo-list-view="controls.lvSeat" k-data-source="cars" k-selectable="'multiple'" k-on-change="onSelected($event)">
                 <div k-template class="seat"
                      ng-class="{
@@ -43,7 +42,6 @@
                                 <h4>{{dataItem.Description}}</h4>
                             </div>
                             <div class="col-xs-10 text-right" ng-if="dataItem.Address" style="min-height: 31px;width: 82%;" ng-class="{'blue-address': dataItem.IsPickUp, 'green-address': dataItem.IsTransit}">
-                                @*<h5>{{dataItem.Address}}</h5>*@
                                 <h5 style="font-size: 12px">{{dataItem.Address}}</h5>
                             </div>
                         </div>
@@ -188,12 +186,11 @@
                                             <div class="col-xs-13">
                                                 <label class="item-label" style="color:red; font-size:120%;">Đón khách:</label>
                                             </div>
-                                            @*<div class="col-xs-14" >*@
-                                            <div class="combobox-address" >
-                                                <input  kendo-combo-box="controls.cbPickUp;" k-filter="'contains'" k-min-length="2"
-                                                       k-data-text-field="'AddressName'" k-data-value-field="'Address'" 
-                                                       k-placeholder="'Điểm đón'" k-data-source="pickups" k-on-change="onChangePickUp()" ng-disabled="transit" ng-model="pickup" 
-                                                        style="color:red; " />
+                                            <div class="combobox-address">
+                                                <input kendo-combo-box="controls.cbPickUp;" k-filter="'contains'" k-min-length="2"
+                                                       k-data-text-field="'AddressName'" k-data-value-field="'Address'"
+                                                       k-placeholder="'Điểm đón'" k-data-source="pickups" k-on-change="onChangePickUp()" ng-disabled="transit" ng-model="pickup"
+                                                       style="color:red; " />
                                             </div>
                                         </div>
                                         <div class="col-xs-12 item-seat">
@@ -246,12 +243,11 @@
                                             <div class="col-xs-13">
                                                 <label class="item-label" style="color:red; font-size:120%;">T/Chuyển:</label>
                                             </div>
-                                            @*<div class="col-xs-14">*@
-                                            <div class="combobox-address" >
+                                            <div class="combobox-address">
                                                 <input kendo-combo-box="controls.cbTransit" k-filter="'contains'" k-min-length="2"
                                                        k-data-text-field="'AddressName'" k-data-value-field="'Address'"
-                                                       k-placeholder="'Trung chuyển'" k-data-source="transits" k-on-change="onChangeTransit()" ng-disabled="pickup" ng-model="transit" 
-                                                        style="color:red; "/>
+                                                       k-placeholder="'Trung chuyển'" k-data-source="transits" k-on-change="onChangeTransit()" ng-disabled="pickup" ng-model="transit"
+                                                       style="color:red; " />
                                             </div>
                                         </div>
                                         <div class="col-xs-12 item-seat">
@@ -276,11 +272,9 @@
                                 <div class="col-xs-12" style="display:inline-block">
                                     <div class="col-xs-6">
                                         <input ng-click="DeleteTicket2()" type="button" class="k-danger k-button" value="Hủy vé" />
-                                        @*<input type="button" class="k-success k-button k-button-icontext" value="Thêm vé" />*@
                                     </div>
                                     <div class="col-xs-6 text-right">
                                         <input type="button" class="k-primary k-button k-button-icontext" value="Cập nhật" ng-click="updateTicket()" />
-                                        @*<input ng-click="PrintTicket();" type="button" class="k-warning k-button k-button-icontext" value="In vé" />*@
                                         <input type="button" class="k-button" value="Đóng" ng-click="ClosePopup()" />
                                     </div>
                                 </div>
@@ -458,6 +452,45 @@
                 </div>
                 <div ng-repeat="move in itemMove">
                     <label>{{move.Description}} - {{move.GoDate | dateFormat}} - {{move.GoTime}} - {{move.Driver}}</label>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="footer">
+                <div class="footer-top">
+                    <table>
+                        <thead>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><div class="item-footer empty-seat" style="border: 1px solid"></div><label>Ghế trống</label></td>
+                                <td><div class="item-footer seat-red"></div><label>Ghế không thông tin</label></td>
+                                <td><div class="item-footer seat-pink"></div><label>Ghế có thông tin</label></td>
+                                <td><div class="item-footer seat-paied"></div><label>Đã T.toán</label></td>
+                                <td><div class="item-footer seat-notpaid"></div><label>Không thu tiền</label></td>
+                                <td><div class="item-footer blue-address"></div><label>Trung chuyển</label></td>
+                                <td><div class="item-footer green-address"></div><label>Điểm đón</label></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="footer-bottom">
+                    <table>
+                        <thead>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <label style="color: white;margin-right: 10px; font-weight: bold;font-size:120%;">Đ: Đặt vé - </label>
+                                    <label style="color: white;margin-right: 10px; font-weight: bold;font-size:120%;">C: Cập nhật thông tin - </label>
+                                    <label style="color: white;margin-right: 10px; font-weight: bold;font-size:120%;">D: Di chuyển ghế - </label>
+                                    <label style="color: white;margin-right: 10px; font-weight: bold;font-size:120%;">In: In vé - </label>
+                                    <label style="color: white;margin-right: 10px; font-weight: bold;font-size:120%;">ĐL: Đặt lại</label>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
         </div>

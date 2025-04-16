@@ -30,6 +30,7 @@ namespace BookingTicket.BussinessObject
         private bool bolIsAllowManager = false;
         private bool bolIsAllowRouter = false;
         private int intCompanyID = int.MinValue;
+        private string strCompanyName = string.Empty;
         #endregion
 
 
@@ -193,6 +194,11 @@ namespace BookingTicket.BussinessObject
         {
             get { return intCompanyID; }
             set { intCompanyID = value; }
+        }  
+        public string CompanyName
+        {
+            get { return strCompanyName; }
+            set { strCompanyName = value; }
         }
 
         #endregion

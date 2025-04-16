@@ -1,5 +1,39 @@
-﻿@Html.Partial("_Header")
-
+﻿@using BookingTicket.Models
+@{
+    var objUser = SysUserModels.Current.CurrentUser();
+}
+@Html.Partial("_Header")
+<title>Trang chủ</title>
 <div id="page-wrapper">
-    Vui lòng khai báo đầy đủ thông tin: <a ng-click="ManagementTimeRedirect()">Giờ chạy</a>, <a ng-click="ManagementStationRedirect()">Trạm</a>, <a ng-click="ManagementRouteRedirect()">Tuyến đường</a> để có thể đặt vé.
+    <div class="highlight">Quản lý nhà xe</div>
+    <div class="company-name">@objUser.CompanyName</div>
 </div>
+
+<style>
+    #wrapper {
+        padding-left: 0px !important;
+    }
+
+    #page-wrapper {
+        display: flex;
+        flex-direction: column; /* Các phần tử con xếp theo chiều dọc */
+        justify-content: center; /* Căn giữa theo chiều dọc */
+        align-items: center; /* Căn giữa theo chiều ngang */
+    }
+
+    .highlight {
+        font-size: 24px; /* Kích thước chữ lớn */
+        font-weight: bold; /* Chữ đậm */
+        color: #FF6347; /* Màu chữ nổi bật */
+        text-align: center; /* Căn giữa nội dung */
+        margin: 10px 0; /* Khoảng cách giữa các phần tử */
+    }
+
+    .company-name {
+        font-size: 48px; /* Kích thước chữ rất lớn */
+        font-weight: bold; /* Chữ đậm */
+        color: #2E8B57; /* Màu chữ nổi bật khác, ví dụ màu xanh lá cây */
+        text-align: center; /* Căn giữa nội dung */
+        margin: 20px 0; /* Khoảng cách lớn hơn so với phần tử trên */
+    }
+</style>

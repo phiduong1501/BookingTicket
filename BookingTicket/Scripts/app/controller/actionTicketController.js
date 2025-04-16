@@ -4,8 +4,6 @@
             $scope.RefreshPage = function () {
                 $route.reload();
             }
-            
-            //$scope.RouteID = $rootScope.currentUser.StationID == 1 ? 2 : 1;
             $scope.RouteID = $rootScope.currentUser.RouteID;
             $scope.CarModel = {};
 
